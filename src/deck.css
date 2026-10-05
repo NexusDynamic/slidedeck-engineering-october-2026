@@ -1,3 +1,5 @@
+/* declared first so that it is the earliest layer: see the PDF export rules at the end */
+@layer print-fix;
 @import 'tailwindcss';
 /* the site's design tokens, shared rather than copied */
 @import '../../zeyus.github.io/src/theme.css';
@@ -62,7 +64,7 @@ body {
 	text-align: left;
 }
 
-.reveal .slides > section.slide {
+.reveal .slides section.slide {
 	flex-direction: column;
 	height: 100%;
 	padding: 56px 80px 92px;
@@ -269,7 +271,7 @@ body {
 }
 
 /* title and closing slides */
-.reveal .slides > section.title-slide {
+.reveal .slides section.title-slide {
 	display: grid !important;
 	grid-template-columns: 1fr 1fr;
 	gap: 64px;
@@ -678,7 +680,7 @@ body {
  * The site's figures on a slide. They are sized for a reading column and carry a blog caption;
  * here they get as much of the slide as possible and the caption is what the speaker says.
  */
-.reveal .slides > section.figure {
+.reveal .slides section.figure {
 	padding: 30px 40px 66px;
 }
 .reveal .figure h2 {
@@ -751,4 +753,47 @@ body {
 	.reveal h1::after {
 		animation: none;
 	}
+}
+
+/*
+ * PDF export: open the deck with ?print-pdf and print to PDF. reveal.js lays every slide out on
+ * a page of its own and resets the slides to plain blocks, so the frame comes off and the slide
+ * layout is put back.
+ */
+html.reveal-print .frame {
+	position: static;
+	overflow: visible;
+	border: 0;
+	border-radius: 0;
+}
+/* reveal.js copies the page background onto each page inline */
+html.reveal-print .reveal .slides .pdf-page {
+	background: var(--color-surface) !important;
+}
+html.reveal-print,
+html.reveal-print body {
+	background-color: var(--color-surface);
+}
+/* reveal.js resets the slides with !important from inside a layer, and among !important rules
+   the earliest layer wins: hence a layer of our own, declared at the top of this file */
+@layer print-fix {
+	html.reveal-print .reveal .slides > .pdf-page > section.slide {
+		display: flex !important;
+		width: 100%;
+		height: 100%;
+		padding: 56px 80px 92px !important;
+	}
+	html.reveal-print .reveal .slides > .pdf-page > section.figure {
+		padding: 30px 40px 66px !important;
+	}
+	html.reveal-print .reveal .slides > .pdf-page > section.title-slide {
+		display: grid !important;
+		padding-bottom: 56px !important;
+	}
+}
+/* these belong to the live deck: one footer for all slides, and controls nobody can press */
+html.reveal-print .reveal .deck-footer,
+html.reveal-print .reveal .theme-toggle,
+html.reveal-print .reveal .timing-fig .playback {
+	display: none !important;
 }

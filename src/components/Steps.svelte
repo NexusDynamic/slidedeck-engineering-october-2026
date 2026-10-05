@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { untrack } from 'svelte';
-	import { reveal } from '../lib/deck.svelte';
+	import { printing, reveal } from '../lib/deck.svelte';
 	import type { StepHandler } from '../lib/steps.svelte';
 
 	/**
@@ -10,11 +10,14 @@
 	let {
 		count,
 		onstep,
-		onleave
+		onleave,
+		printStep = count
 	}: {
 		count: number;
 		onstep: StepHandler;
 		onleave?: () => void;
+		/** the step a PDF export shows, as it gets one page per slide: the last one by default */
+		printStep?: number;
 	} = $props();
 
 	let anchor: HTMLElement | undefined = $state();
@@ -23,6 +26,7 @@
 		const api = reveal.api;
 		const section = anchor?.closest('section');
 		if (!api || !section) return;
+		if (printing) return untrack(() => onstep(printStep, false));
 
 		// counted from the DOM rather than from events: arriving on a slide backwards shows every
 		// fragment at once without announcing them

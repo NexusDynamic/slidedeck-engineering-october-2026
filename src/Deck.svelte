@@ -35,6 +35,11 @@
 			hash: true,
 			// a reload comes back to the same slide, but with its figure at the beginning
 			fragmentInURL: false,
+			// PDF export (?print-pdf): one page per slide, not one per step of a figure
+			pdfSeparateFragments: false,
+			pdfMaxPagesPerSlide: 1,
+			// no automatic switch to reveal's scrolling view in a narrow window: the deck is a fixed frame
+			scrollActivationWidth: 0,
 			controls: false,
 			progress: true,
 			transition: 'fade',

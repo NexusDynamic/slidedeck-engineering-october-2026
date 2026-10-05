@@ -18,3 +18,7 @@ to right. On the timing figures' scene
 slides each press plays to the next stage and pauses; their lane timelines play and loop while on
 show. `T` light / dark, `S` speaker notes, `F` fullscreen, `Esc` overview,
 ctrl + click zooms in. `?theme=light` in the URL starts on the light theme.
+
+PDF: open the deck with `?print-pdf` on the end of the URL (add `&theme=light` for the light
+theme), then print to PDF from the browser with margins set to none and background graphics on.
+One page per slide; stepped figures show their last step.

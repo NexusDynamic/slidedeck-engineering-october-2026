@@ -16,7 +16,7 @@
 
 <Slide title="Everything's connected" class="figure wiring">
     <WiringDiagram bind:show />
-    <Steps count={order.length - 1} onstep={(n) => (show = order[n])} />
+    <Steps count={order.length - 1} onstep={(n) => (show = order[n])} printStep={0} />
     {#snippet notes()}
         {#each filters.slice(1) as { id } (id)}
             <p><b>{id}</b>: {signalNotes[id]}</p>
