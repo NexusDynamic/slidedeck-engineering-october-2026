@@ -1,0 +1,750 @@
+@import 'tailwindcss';
+/* the site's design tokens, shared rather than copied */
+@import '../../zeyus.github.io/src/theme.css';
+@import 'reveal.js/reveal.css' layer(base);
+
+/* the site components use a few utility classes */
+@source '../../zeyus.github.io/src/components';
+
+@font-face {
+	font-family: 'Mechanical Bold';
+	src: url('../../zeyus.github.io/static/MechanicalBold-oOmA.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Clear Sans';
+	src: url('../../zeyus.github.io/static/ClearSans-OP0p.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Hack Nerd Font';
+	src: url('../../zeyus.github.io/static/HackNerdFont-Regular.core.woff2') format('woff2');
+}
+
+html,
+body {
+	background-color: var(--color-bg);
+}
+
+/* the site's page border, around the whole deck */
+.frame {
+	position: fixed;
+	inset: 10px;
+	overflow: hidden;
+	border: 3px solid var(--color-primary-700);
+	border-radius: 0.5rem;
+	background-color: var(--color-surface);
+}
+
+.only-light,
+.dark .only-dark {
+	display: block;
+}
+.only-dark,
+.dark .only-light {
+	display: none;
+}
+
+.reveal {
+	font-family: 'Clear Sans', sans-serif;
+	font-size: 30px;
+	line-height: 1.4;
+	color: var(--color-fg);
+}
+
+.reveal ::selection {
+	background-color: var(--color-primary-700);
+	color: var(--color-white);
+}
+
+/* slides */
+.reveal .slides {
+	text-align: left;
+}
+
+.reveal .slides > section.slide {
+	flex-direction: column;
+	height: 100%;
+	padding: 56px 80px 92px;
+}
+
+.reveal .body {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	justify-content: center;
+	min-height: 0;
+}
+
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal strong,
+.reveal dt {
+	font-family: 'Mechanical Bold', serif;
+	font-weight: normal;
+	color: var(--color-fg-strong);
+}
+
+.reveal h1 {
+	font-size: 3.4em;
+	line-height: 1.05;
+	text-shadow: 0 0 22px var(--color-glow);
+}
+
+/* the post title's blinking cursor */
+.reveal h1::after {
+	content: '▌';
+	margin-left: 0.1em;
+	color: var(--color-accent);
+	animation: cursor-blink 1.1s steps(1) infinite;
+}
+
+@keyframes cursor-blink {
+	50% {
+		opacity: 0;
+	}
+}
+
+.reveal h2 {
+	flex: none;
+	font-size: 1.7em;
+	line-height: 1.15;
+	text-shadow: 0 0 14px var(--color-glow);
+}
+
+.reveal h3 {
+	font-size: 1.15em;
+}
+
+/* headings as raw markdown, like the posts */
+.reveal h2::before,
+.reveal h3::before {
+	margin-right: 0.4em;
+	font-family: var(--font-mono);
+	font-size: 0.7em;
+	color: var(--color-accent);
+	vertical-align: 0.1em;
+	text-shadow: none;
+}
+.reveal h2::before {
+	content: '##';
+}
+.reveal h3::before {
+	content: '###';
+}
+
+.reveal .prompt {
+	margin-bottom: 0.3em;
+	font-family: var(--font-mono);
+	font-size: 0.55em;
+	color: var(--color-fg-subtle);
+}
+.reveal .prompt span {
+	color: var(--color-accent);
+}
+
+.reveal a {
+	color: var(--color-accent-strong);
+	text-decoration: underline;
+	text-decoration-color: var(--color-accent-soft);
+	text-underline-offset: 0.2em;
+}
+
+.reveal ul {
+	display: block;
+	margin: 0;
+	list-style: none;
+}
+.reveal li {
+	position: relative;
+	margin-bottom: 0.55em;
+	padding-left: 1.3em;
+}
+.reveal li::before {
+	content: '>';
+	position: absolute;
+	left: 0;
+	font-family: var(--font-mono);
+	font-weight: 900;
+	color: var(--color-accent);
+}
+
+.reveal .callout {
+	margin-block: 0.8em 0;
+	padding: 0.7em 1em;
+}
+
+.reveal figure img {
+	border: 2px solid var(--color-accent-soft);
+	border-radius: 0.5rem;
+}
+.reveal figcaption {
+	margin-top: 0.5em;
+	font-family: var(--font-mono);
+	font-size: 0.5em;
+	color: var(--color-fg-muted);
+}
+.reveal figcaption::before {
+	content: 'fig > ';
+	color: var(--color-accent);
+}
+
+/* text on the left, a picture on the right */
+.reveal .split .body {
+	display: grid;
+	grid-template-columns: 1.15fr 1fr;
+	gap: 64px;
+	align-items: center;
+}
+.reveal .split figure img {
+	max-height: 560px;
+	margin-inline: auto;
+}
+
+.reveal .streams {
+	display: grid;
+	grid-template-columns: max-content 1fr;
+	gap: 0.5em 1.2em;
+	align-items: baseline;
+}
+.reveal .streams dt {
+	color: var(--color-accent-strong);
+}
+.reveal .streams.wide {
+	font-size: 1.05em;
+	row-gap: 0.8em;
+}
+
+/* count the clocks */
+.reveal .clocks {
+	display: grid;
+	gap: 16px;
+}
+.reveal .clock {
+	display: flex;
+	align-items: center;
+	gap: 0.8em;
+	padding: 0.45em 0.9em;
+	border: 1px solid var(--color-line);
+	border-radius: 0.5rem;
+	background-color: var(--color-surface-2);
+}
+.reveal .clock b {
+	min-width: 2ch;
+	font-family: var(--font-mono);
+	font-size: 1.3em;
+	color: var(--color-accent);
+}
+.reveal .clock small {
+	display: block;
+	font-size: 0.6em;
+	color: var(--color-fg-muted);
+}
+.reveal .clocks-total {
+	font-family: var(--font-mono);
+	font-size: 0.75em;
+	color: var(--color-accent-strong);
+}
+
+/* constant delay against jitter */
+.reveal .versus {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 40px;
+}
+.reveal .card {
+	padding: 0.8em 1em;
+	border: 1px solid var(--color-line);
+	border-radius: 0.5rem;
+	background-color: var(--color-surface-2);
+	font-size: 0.85em;
+}
+.reveal .card p {
+	margin-block: 0.3em 0.7em;
+	color: var(--color-fg-muted);
+}
+.reveal .card li {
+	margin-bottom: 0.3em;
+}
+
+/* title and closing slides */
+.reveal .slides > section.title-slide {
+	display: grid !important;
+	grid-template-columns: 1fr 1fr;
+	gap: 64px;
+	align-items: center;
+	padding-bottom: 56px;
+}
+.reveal .subtitle {
+	margin-top: 0.6em;
+	font-size: 1.15em;
+	color: var(--color-fg-strong);
+}
+.reveal .byline {
+	margin-top: 1.2em;
+	font-family: var(--font-mono);
+	font-size: 0.6em;
+	color: var(--color-fg-muted);
+}
+.reveal .title-logo {
+	margin-top: 64px;
+}
+.reveal .title-logo .au-logo,
+.reveal .closing-foot .au-logo {
+	height: 110px;
+}
+.reveal .title-photo img {
+	width: 100%;
+	aspect-ratio: 4 / 3.4;
+	object-fit: cover;
+}
+
+.reveal .closing {
+	justify-content: center;
+}
+.reveal .closing h2 {
+	margin-bottom: 0.7em;
+}
+.reveal .closing .try {
+	margin-top: 0.8em;
+	font-family: var(--font-mono);
+	font-size: 0.7em;
+}
+.reveal .closing-foot {
+	display: flex;
+	align-items: center;
+	gap: 32px;
+	margin-top: 56px;
+	font-family: var(--font-mono);
+	font-size: 0.6em;
+	color: var(--color-fg-muted);
+}
+
+/* the game link as a QR code, in the bottom right corner */
+.reveal .qr {
+	position: absolute;
+	right: 80px;
+	bottom: 70px;
+	margin: 0;
+	text-align: center;
+	font-family: var(--font-mono);
+	font-size: 0.5em;
+	color: var(--color-fg-muted);
+}
+.reveal .qr svg {
+	width: 230px;
+	height: 230px;
+	margin-bottom: 0.5em;
+	border: 2px solid var(--color-accent-soft);
+	border-radius: 0.5rem;
+}
+
+/* acknowledgements */
+.reveal .people {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 40px;
+}
+.reveal .person img {
+	width: 150px;
+	height: 190px;
+	margin-bottom: 0.6em;
+	object-fit: cover;
+	border: 2px solid var(--color-accent-soft);
+	border-radius: 0.5rem;
+}
+.reveal .person h3::before {
+	content: none;
+}
+.reveal .person p {
+	font-size: 0.75em;
+}
+.reveal .person .role {
+	font-family: var(--font-mono);
+	font-size: 0.55em;
+	color: var(--color-accent);
+}
+.reveal .person .where {
+	margin-top: 0.3em;
+	color: var(--color-fg-muted);
+}
+
+/* citations (the site's BoringReference) and the references slide */
+.reveal .footnote-ref {
+	margin: 0 0 0 0.15em;
+	font-family: var(--font-mono);
+	font-size: 0.55em;
+	color: var(--color-accent-strong);
+	text-decoration: none;
+}
+.reveal .references ol {
+	justify-content: flex-start;
+	gap: 0.7em;
+	padding-top: 0.8em;
+	font-size: 0.62em;
+}
+.reveal .references li {
+	display: flex;
+	gap: 0.9em;
+	margin: 0;
+	padding: 0;
+}
+.reveal .references li::before {
+	content: none;
+}
+.reveal .references button {
+	flex: none;
+	min-width: 1.6em;
+	font-family: var(--font-mono);
+	color: var(--color-accent);
+	text-align: right;
+	cursor: pointer;
+}
+.reveal .references a {
+	overflow-wrap: anywhere;
+}
+
+/*
+ * The thread of the talk: what is needed → the design choice → what has to be built.
+ * Magenta for the cognitive end, blue for the engineering end.
+ */
+.reveal .chain {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: 34px;
+	margin-top: 0.9em;
+	font-size: 0.74em;
+	line-height: 1.35;
+}
+.reveal .chain .link {
+	position: relative;
+	padding: 0.6em 0.8em;
+	border: 1px solid var(--color-line);
+	border-top: 3px solid var(--color-fg-subtle);
+	border-radius: 0.4rem;
+	background-color: var(--color-surface-2);
+}
+.reveal .chain .link span {
+	display: block;
+	margin-bottom: 0.2em;
+	font-family: var(--font-mono);
+	font-size: 0.75em;
+	color: var(--color-fg-subtle);
+}
+.reveal .chain .link + .link::before {
+	content: '→';
+	position: absolute;
+	top: 50%;
+	left: -27px;
+	transform: translateY(-50%);
+	font-family: var(--font-mono);
+	color: var(--color-fg-subtle);
+}
+.reveal .chain .need {
+	border-top-color: var(--color-accent);
+}
+.reveal .chain .need span {
+	color: var(--color-accent);
+}
+.reveal .chain .build {
+	border-top-color: var(--color-secondary-500);
+}
+.reveal .chain .build span {
+	color: var(--color-secondary-500);
+}
+.reveal .chain + .chain {
+	margin-top: 0.5em;
+}
+.reveal .split .chain {
+	grid-template-columns: 1fr;
+	gap: 6px;
+	font-size: 0.6em;
+}
+.reveal .split .chain .link + .link::before {
+	content: none;
+}
+
+/* all the chains at once */
+.reveal table.chains {
+	width: 100%;
+	border-collapse: separate;
+	border-spacing: 0 8px;
+	font-size: 0.7em;
+	line-height: 1.3;
+}
+.reveal .chains th {
+	padding: 0 0.8em 0.2em;
+	font-family: var(--font-mono);
+	font-size: 0.85em;
+	font-weight: normal;
+	text-align: left;
+	color: var(--color-fg-subtle);
+}
+.reveal .chains th:first-child {
+	color: var(--color-accent);
+}
+.reveal .chains th:last-child {
+	color: var(--color-secondary-500);
+}
+.reveal .chains td {
+	width: 33.3%;
+	padding: 0.5em 0.8em;
+	border-block: 1px solid var(--color-line);
+	background-color: var(--color-surface-2);
+	vertical-align: top;
+}
+.reveal .chains td:first-child {
+	border-left: 3px solid var(--color-accent);
+	border-radius: 0.4rem 0 0 0.4rem;
+}
+.reveal .chains td:last-child {
+	border-right: 3px solid var(--color-secondary-500);
+	border-radius: 0 0.4rem 0.4rem 0;
+}
+/* the one row that starts from the recording method instead of the question */
+.reveal .chains .recording td:first-child {
+	border-left-color: var(--color-secondary-500);
+}
+
+/* what makes brains line up, stacked */
+.reveal .layers {
+	display: grid;
+	gap: 12px;
+	list-style: none;
+}
+.reveal .layers li {
+	margin: 0;
+	padding: 0.5em 0.9em;
+	border: 1px solid var(--color-line);
+	border-radius: 0.5rem;
+	background-color: var(--color-surface-2);
+}
+.reveal .layers li::before {
+	content: none;
+}
+.reveal .layers li:first-child {
+	border: 2px dashed var(--color-accent);
+	background: none;
+	color: var(--color-accent-strong);
+}
+.reveal .layers small {
+	display: block;
+	font-size: 0.6em;
+	color: var(--color-fg-muted);
+}
+
+/* a figure from a paper: drawn for a white page, so it keeps one */
+.reveal .paper {
+	margin-bottom: 0.7em;
+}
+.reveal .paper img {
+	max-height: 370px;
+	margin-inline: auto;
+	padding: 14px 20px;
+	background-color: #fff;
+}
+.reveal .paper figcaption {
+	text-align: center;
+}
+.reveal ul.compact {
+	font-size: 0.85em;
+}
+.reveal ul.compact li {
+	margin-bottom: 0.3em;
+}
+
+/* six people, two teams */
+.reveal .teams svg {
+	width: 100%;
+	max-height: 540px;
+}
+.reveal .teams .seat {
+	stroke: var(--color-surface);
+	stroke-width: 3;
+	transition: fill 0.4s;
+}
+.reveal .teams .seat.team-A {
+	fill: var(--color-accent);
+}
+.reveal .teams .seat.team-B {
+	fill: var(--color-secondary-500);
+}
+.reveal .teams text {
+	font-family: var(--font-mono);
+	font-size: 15px;
+	fill: #fff;
+}
+.reveal .teams .mate {
+	stroke-width: 4;
+	stroke-linecap: round;
+}
+.reveal .teams .mate.team-A {
+	stroke: var(--color-accent);
+}
+.reveal .teams .mate.team-B {
+	stroke: var(--color-secondary-500);
+}
+.reveal .teams .rival {
+	stroke: var(--color-fg-subtle);
+	stroke-width: 1.5;
+	stroke-dasharray: 3 6;
+	opacity: 0.6;
+}
+.reveal .teams figcaption {
+	text-align: center;
+}
+
+/* one sentence, large */
+.reveal .statement .big {
+	margin-bottom: 0.6em;
+	font-size: 1.7em;
+	line-height: 1.25;
+	color: var(--color-fg-strong);
+}
+.reveal .statement .big strong {
+	color: var(--color-accent-strong);
+	text-shadow: 0 0 18px var(--color-glow);
+}
+.reveal .statement .chain {
+	margin-top: 1.6em;
+}
+
+/* theme switch, on the title slide only */
+.reveal .theme-toggle {
+	position: absolute;
+	top: 28px;
+	right: 36px;
+	padding: 0.35em 0.9em;
+	border: 1px solid var(--color-line);
+	border-radius: 999px;
+	background-color: var(--color-surface-2);
+	font-family: var(--font-mono);
+	font-size: 15px;
+	color: var(--color-fg-muted);
+	cursor: pointer;
+}
+.reveal .theme-toggle:hover {
+	border-color: var(--color-accent);
+	color: var(--color-fg-strong);
+}
+
+/* footer, slide number and progress bar */
+.reveal .deck-footer {
+	position: absolute;
+	left: 40px;
+	bottom: 22px;
+	z-index: 2;
+	display: flex;
+	align-items: center;
+	gap: 20px;
+	font-family: var(--font-mono);
+	font-size: 13px;
+	color: var(--color-fg-subtle);
+	transition: opacity 0.2s;
+}
+.reveal .deck-footer .au-logo {
+	height: 30px;
+}
+/* slides with data-state="bare" carry their own logo */
+.bare .reveal .deck-footer {
+	opacity: 0;
+}
+
+.reveal .slide-number a {
+	color: inherit;
+	text-decoration: none;
+}
+.reveal .slide-number {
+	right: 40px;
+	bottom: 26px;
+	padding: 0;
+	background: none;
+	font-family: var(--font-mono);
+	font-size: 13px;
+	color: var(--color-fg-subtle);
+}
+
+.reveal .progress {
+	height: 4px;
+	color: var(--color-accent);
+}
+
+/*
+ * The site's figures on a slide. They are sized for a reading column and carry a blog caption;
+ * here they get as much of the slide as possible and the caption is what the speaker says.
+ */
+.reveal .slides > section.figure {
+	padding: 30px 40px 66px;
+}
+.reveal .figure h2 {
+	font-size: 1.15em;
+}
+.reveal .figure .body {
+	padding-top: 14px;
+}
+.reveal .timing-fig {
+	margin: 0;
+}
+.reveal .timing-fig figcaption {
+	display: none;
+}
+.reveal .timing-fig .canvas {
+	overflow: hidden;
+}
+/* scaled to fit the height it is given; the drawing stays centred */
+.reveal .timing-fig .canvas svg {
+	min-width: 0;
+	max-height: var(--fig-h, 660px);
+}
+/* reveal.js has a .playback of its own (the auto-slide control), pinned to a corner */
+.reveal .timing-fig .playback {
+	transition: none;
+	position: static;
+	z-index: auto;
+	margin-top: 14px;
+	font-size: 17px;
+	cursor: auto;
+}
+.reveal .timing-fig .filters {
+	justify-content: center;
+}
+.reveal .timing-fig .filters button {
+	font-size: 17px;
+}
+/* the long description of each signal is in the speaker notes */
+.reveal .timing-fig .path-note {
+	display: none;
+}
+
+.reveal .wiring {
+	--fig-h: 676px;
+}
+
+/*
+ * The timing figures are a lane timeline with an animated scene under it: too much for one
+ * slide, so the scene goes on one and the lanes on the next, both run by the same clock.
+ */
+.reveal .scene-only .canvas svg:not(.scene),
+.reveal .lanes-only .canvas svg.scene {
+	display: none;
+}
+.reveal .scene-only .canvas svg.scene {
+	max-height: 520px;
+	margin-top: 0;
+	padding-top: 0;
+	border-top: 0;
+}
+.reveal .scene-only .body {
+	justify-content: center;
+	padding-bottom: 60px;
+}
+.reveal .lanes-only {
+	--fig-h: 690px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.reveal h1::after {
+		animation: none;
+	}
+}
