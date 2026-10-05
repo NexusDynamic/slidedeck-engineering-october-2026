@@ -370,6 +370,10 @@ body {
 	color: var(--color-fg-muted);
 }
 
+.reveal sup {
+    top: -0.1em;
+}
+
 /* citations (the site's BoringReference) and the references slide */
 .reveal .footnote-ref {
 	margin: 0 0 0 0.15em;

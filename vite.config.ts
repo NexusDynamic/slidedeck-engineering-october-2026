@@ -8,6 +8,8 @@ import tailwindcss from '@tailwindcss/vite';
 const siteRoot = resolve(import.meta.dirname, '../zeyus.github.io');
 
 export default defineConfig({
+	// relative asset URLs, so the built deck works from any folder (e.g. example.com/rt-deck/)
+	base: './',
 	plugins: [tailwindcss(), svelte({ preprocess: vitePreprocess({ script: true }) })],
 	resolve: {
 		alias: {

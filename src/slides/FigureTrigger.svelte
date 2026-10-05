@@ -12,7 +12,7 @@
     const onstep = stepPlayback(playback, stops);
 </script>
 
-<Slide title="One pulse, from the game to the EEG" class="figure scene-only">
+<Slide title="One trigger pulse" class="figure scene-only">
     <TriggerPulseTimeline {playback} />
     <Steps count={stops.length} {onstep} onleave={playback.pause} />
     {#snippet notes()}
@@ -27,7 +27,7 @@
     {/snippet}
 </Slide>
 
-<Slide title="On the EEG within half a millisecond" class="figure lanes-only">
+<Slide title="Sub millisecond latency" class="figure lanes-only">
     <!-- plays and loops while the slide is on show -->
     {#snippet children(active)}
         <TriggerPulseTimeline autoplay={active} />

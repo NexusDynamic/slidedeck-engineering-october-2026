@@ -7,21 +7,21 @@
 			name: 'Anna Zamm',
 			title: 'Associate Professor',
 			where: 'Department of Linguistics, Cognitive Science and Semiotics',
-			photo: '/people/anna-zamm.jpg'
+			photo: 'people/anna-zamm.jpg'
 		},
 		{
 			role: 'Co-supervisor',
 			name: 'Simon Lind Kappel',
 			title: 'Assistant Professor',
 			where: 'Department of Electrical and Computer Engineering – Biomedical Engineering',
-			photo: '/people/simon-lind-kappel.jpg'
+			photo: 'people/simon-lind-kappel.jpg'
 		},
 		{
 			role: 'Co-supervisor',
 			name: 'Chris Mathys',
 			title: 'Professor',
 			where: 'Interacting Minds Center',
-			photo: '/people/chris-mathys.jpg'
+			photo: 'people/chris-mathys.jpg'
 		}
 	];
 </script>
@@ -30,7 +30,7 @@
 	<div class="people">
 		{#each people as p (p.name)}
 			<div class="person">
-				<img src={p.photo} alt="" />
+				<img src={import.meta.env.BASE_URL + p.photo} alt="" />
 				<div>
 					<p class="role">{p.role}</p>
 					<h3>{p.name}</h3>
