@@ -3,10 +3,11 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
-		"dev": "vite",
-		"build": "vite build",
+		"sync-site": "pnpm --dir ../zeyus.github.io exec svelte-kit sync",
+		"dev": "pnpm sync-site && vite",
+		"build": "pnpm sync-site && vite build",
 		"preview": "vite preview",
-		"check": "svelte-check --tsconfig ./tsconfig.json"
+		"check": "pnpm sync-site && svelte-check --tsconfig ./tsconfig.json"
 	},
 	"devDependencies": {
 		"@sveltejs/vite-plugin-svelte": "^7.3.1",
