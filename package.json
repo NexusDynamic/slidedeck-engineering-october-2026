@@ -10,13 +10,13 @@
 	},
 	"devDependencies": {
 		"@sveltejs/vite-plugin-svelte": "^7.3.1",
-		"@tailwindcss/vite": "^4.3.3",
+		"@tailwindcss/vite": "^4.3.5",
 		"qrcode-generator": "^2.0.4",
 		"reveal.js": "^6.0.2",
-		"svelte": "^5.57.1",
-		"svelte-check": "^4.7.6",
-		"tailwindcss": "^4.3.3",
+		"svelte": "^5.57.3",
+		"svelte-check": "^4.7.8",
+		"tailwindcss": "^4.3.5",
 		"typescript": "^6.0.3",
-		"vite": "^8.3.2"
+		"vite": "^8.3.8"
 	}
 }
