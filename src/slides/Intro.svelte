@@ -24,7 +24,7 @@
         </p>
         <h1>{talk.title}</h1>
         <p class="subtitle">{talk.subtitle}</p>
-        <p class="byline">{talk.author} · {talk.affiliation}</p>
+        <p class="byline">{talk.author} | {talk.affiliation}</p>
         <div class="title-logo"><AuLogo variant="stacked" /></div>
     </div>
     <figure class="title-photo">
@@ -32,7 +32,7 @@
             src={lab}
             alt="Six seats in a circle, each with an iPad on a stand and a mannequin head wearing an EEG cap"
         />
-        <figcaption>the lab, sans humans</figcaption>
+        <figcaption>the lab, and some very complient participants</figcaption>
     </figure>
 </section>
 
@@ -44,11 +44,12 @@
             can tell them apart
         </li>
         <li>
-            What is shared internally between the individuals within a group?
+            Is there something shared internally between the individuals within
+            a group?
         </li>
     </ul>
     <Callout label="QUESTION">
-        <p>Is there a marker of group identity in the brain?</p>
+        <p>Does group identity modulate neural synchrony?</p>
     </Callout>
     {#snippet notes()}
         <p>

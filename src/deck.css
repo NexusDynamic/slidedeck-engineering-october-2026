@@ -89,7 +89,7 @@ body {
 }
 
 .reveal h1 {
-	font-size: 3.4em;
+	font-size: 1.6em;
 	line-height: 1.05;
 	text-shadow: 0 0 22px var(--color-glow);
 }
@@ -99,7 +99,8 @@ body {
 	content: '▌';
 	margin-left: 0.1em;
 	color: var(--color-accent);
-	animation: cursor-blink 1.1s steps(1) infinite;
+	opacity: 0.6;
+	animation: cursor-blink 3.1s steps(1) infinite;
 }
 
 @keyframes cursor-blink {
@@ -286,7 +287,7 @@ body {
 .reveal .byline {
 	margin-top: 1.2em;
 	font-family: var(--font-mono);
-	font-size: 0.6em;
+	font-size: 0.5em;
 	color: var(--color-fg-muted);
 }
 .reveal .title-logo {

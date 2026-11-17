@@ -32,7 +32,7 @@
             other one.
         </li>
         <li>
-            Groups and group identity seem like a core part of humans as social
+            Groups and group identity are a core part of humans as social
             beings.
         </li>
     </ul>

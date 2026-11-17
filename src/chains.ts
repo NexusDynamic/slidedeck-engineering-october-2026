@@ -8,9 +8,9 @@ export type ChainId = keyof typeof chains;
 export const chains = {
 	group: {
 		from: 'cognitive',
-		need: 'People have to feel that they belong to a group',
-		choice: 'Assign teams, make sure everyone is aware of their assignment and teammates',
-		build: 'Teams can be made out of any participants: networked multiplayer, teams set per trial block'
+		need: 'There must be a group identity for the participants',
+		choice: 'Teams are assigned, and participants can visually tell which team everyone is on',
+		build: 'Teams per trial block (5 trials), a physical, colored tube for each participant'
 	},
 	signal: {
 		from: 'cognitive',
