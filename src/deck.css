@@ -200,9 +200,283 @@ body {
 	gap: 64px;
 	align-items: center;
 }
-.reveal .split figure img {
+.reveal .split figure:nth-of-type(1) img {
 	max-height: 560px;
 	margin-inline: auto;
+	margin-top: 0.5em;
+}
+
+/* the game screenshot is portrait: a narrower column for it */
+.reveal .split.game .body {
+	grid-template-columns: 1.6fr 1fr;
+}
+.reveal .split.game figure img {
+	max-height: 620px;
+}
+.reveal .split.game figcaption {
+	text-align: center;
+}
+
+/* a paper's figure on the right, text on the left */
+.reveal .split.paper-right .body {
+	grid-template-columns: 1fr 1fr;
+}
+.reveal .split.paper-right .paper img {
+	max-height: 520px;
+}
+
+/*
+ * Results: the notebook's plots, drawn for a white page, as large as the slide allows.
+ * The colours of the block types match the plots.
+ */
+.reveal {
+	--c-balanced: #2b7bba;
+	--c-blinded: #7b5ea7;
+	--c-hl: #c0392b;
+	--c-hl-low: #e8a09a;
+}
+.reveal .split.result .body {
+	grid-template-columns: 0.8fr 1.2fr;
+	gap: 48px;
+}
+.reveal .plot {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	margin: 0;
+}
+.reveal .plot img,
+.reveal .split .plot img {
+	width: 100%;
+	max-height: none;
+	margin: 0;
+	padding: 8px 12px;
+	background-color: #fff;
+}
+.reveal .plot.stack {
+	align-items: center;
+	gap: 10px;
+}
+.reveal .plot.stack img,
+.reveal .split .plot.stack img {
+	width: auto;
+	max-width: 100%;
+	max-height: 292px;
+}
+.reveal .plot figcaption {
+	text-align: center;
+}
+.reveal .stat {
+	font-family: var(--font-mono);
+	font-size: 0.92em;
+	white-space: nowrap;
+	color: var(--color-accent-strong);
+}
+.reveal .aside {
+	margin-top: 0.6em;
+	padding-left: 1.3em;
+	font-size: 0.75em;
+	font-style: italic;
+	color: var(--color-fg-muted);
+}
+.reveal .result .callout {
+	font-size: 0.75em;
+}
+.reveal .cond {
+	white-space: nowrap;
+}
+.reveal .cond::before {
+	content: '';
+	display: inline-block;
+	width: 0.6em;
+	height: 0.6em;
+	margin-right: 0.35em;
+	border-radius: 50%;
+	background-color: var(--c);
+	vertical-align: 0.05em;
+}
+.reveal .cond.balanced {
+	--c: var(--c-balanced);
+}
+.reveal .cond.blinded {
+	--c: var(--c-blinded);
+}
+.reveal .cond.hl {
+	--c: var(--c-hl);
+}
+.reveal .cond.hl-low {
+	--c: var(--c-hl-low);
+}
+/* skill-sorted is two teams: both colours */
+.reveal .conditions .cond.hl::before {
+	width: 1.2em;
+	border-radius: 0.3em;
+	background: linear-gradient(to right, var(--c-hl) 50%, var(--c-hl-low) 50%);
+}
+
+/* research question: the three levels */
+.reveal .three {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 24px;
+	margin-top: 1em;
+	font-size: 0.8em;
+	line-height: 1.3;
+}
+.reveal .three .box {
+	padding: 0.7em 0.9em;
+}
+.reveal .three .box b {
+	font-family: 'Mechanical Bold', serif;
+	font-size: 1.15em;
+}
+.reveal .three .box span {
+	display: block;
+	margin-block: 0.3em;
+}
+
+/* session design: the phases in order, joint blocks highlighted */
+.reveal .timeline {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	gap: 30px;
+	margin: 0 0 1.2em;
+	font-size: 0.72em;
+	line-height: 1.3;
+	list-style: none;
+}
+.reveal .timeline li {
+	margin: 0;
+	padding: 0.55em 0.8em;
+	border: 1px solid var(--color-line);
+	border-top: 3px solid var(--color-fg-subtle);
+	border-radius: 0.4rem;
+	background-color: var(--color-surface-2);
+}
+.reveal .timeline li::before {
+	content: none;
+}
+.reveal .timeline li + li::after {
+	content: '→';
+	position: absolute;
+	top: 50%;
+	left: -24px;
+	transform: translateY(-50%);
+	font-family: var(--font-mono);
+	color: var(--color-fg-subtle);
+}
+.reveal .timeline li.joint {
+	border-top-color: var(--color-accent);
+}
+.reveal .timeline b {
+	display: block;
+	font-family: var(--font-mono);
+	color: var(--color-fg-strong);
+}
+.reveal .timeline small {
+	color: var(--color-fg-muted);
+}
+.reveal .design-grid {
+	display: grid;
+	grid-template-columns: 1.4fr 1fr;
+	gap: 56px;
+	align-items: center;
+}
+
+/* tables: conditions, comparison levels */
+.reveal table.conditions,
+.reveal table.levels {
+	border-collapse: collapse;
+	font-size: 0.75em;
+	line-height: 1.3;
+}
+.reveal table.conditions th,
+.reveal table.levels thead th {
+	padding: 0 0.9em 0.4em;
+	font-family: var(--font-mono);
+	font-size: 0.8em;
+	font-weight: normal;
+	text-align: left;
+	color: var(--color-fg-subtle);
+}
+.reveal table.conditions td {
+	padding: 0.55em 0.9em;
+	white-space: nowrap;
+	border-top: 1px solid var(--color-line);
+}
+.reveal table.conditions td:first-child {
+	font-family: var(--font-mono);
+	color: var(--color-fg-strong);
+}
+.reveal table.levels {
+	margin: 0 auto 1em;
+}
+.reveal table.levels caption {
+	caption-side: top;
+	padding-bottom: 0.6em;
+	font-family: var(--font-mono);
+	font-size: 0.75em;
+	text-align: right;
+	color: var(--color-fg-subtle);
+}
+.reveal table.levels thead th {
+	text-align: center;
+}
+.reveal table.levels tbody th {
+	padding: 0.4em 1.4em 0.4em 0;
+	font-family: var(--font-mono);
+	font-weight: normal;
+	text-align: left;
+	color: var(--color-fg-strong);
+}
+.reveal table.levels tbody th small {
+	display: block;
+	font-family: 'Clear Sans', sans-serif;
+	font-size: 0.75em;
+	color: var(--color-fg-muted);
+}
+.reveal table.levels td {
+	min-width: 8em;
+	padding: 0.4em 0.9em;
+	border-top: 1px solid var(--color-line);
+	text-align: center;
+	color: var(--color-fg-subtle);
+}
+.reveal table.levels tbody tr th {
+	border-top: 1px solid var(--color-line);
+}
+.reveal table.levels td.on {
+	color: var(--color-accent);
+}
+
+/* closing: the summary, and the game to try */
+.reveal .summary .card {
+	font-size: 0.8em;
+}
+.reveal .summary .card h3 {
+	margin-bottom: 0.4em;
+}
+.reveal .summary .card li {
+	margin-bottom: 0.5em;
+}
+.reveal .summary .play {
+	display: flex;
+	align-items: center;
+	gap: 28px;
+	margin-top: 1em;
+}
+.reveal .summary .qr {
+	position: static;
+}
+.reveal .summary .qr svg {
+	width: 140px;
+	height: 140px;
+	margin: 0;
+}
+.reveal .summary .try {
+	margin: 0;
+	font-family: var(--font-mono);
+	font-size: 0.65em;
 }
 
 .reveal .streams {
@@ -929,4 +1203,25 @@ html.reveal-print .reveal .deck-footer,
 html.reveal-print .reveal .theme-toggle,
 html.reveal-print .reveal .timing-fig .playback {
 	display: none !important;
+}
+
+/* author–year citations; each name goes to its entry on the references slide */
+.reveal .cite {
+	font-size: 0.72em;
+	color: var(--color-fg-muted);
+	white-space: nowrap;
+}
+.reveal .cite a {
+	color: inherit;
+	text-decoration-color: var(--color-accent-soft);
+}
+.reveal .cite a:hover {
+	color: var(--color-accent-strong);
+}
+.reveal .references li {
+	border-radius: 0.3rem;
+	transition: background-color 0.4s;
+}
+.reveal .references li.flash {
+	background-color: var(--color-accent-faint);
 }

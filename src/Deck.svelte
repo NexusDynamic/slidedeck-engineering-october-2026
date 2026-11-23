@@ -7,17 +7,11 @@
     import { talk } from "./meta";
     import AuLogo from "./components/AuLogo.svelte";
     import Intro from "./slides/Intro.svelte";
-    import Cognitive from "./slides/Cognitive.svelte";
-    import Design from "./slides/Design.svelte";
-    import Clocks from "./slides/Clocks.svelte";
-    import Payoff from "./slides/Payoff.svelte";
-    import FigureWiring from "./slides/FigureWiring.svelte";
-    import FigureTrigger from "./slides/FigureTrigger.svelte";
-    import FigureTouch from "./slides/FigureTouch.svelte";
-    import Jitter from "./slides/Jitter.svelte";
-    import Outro from "./slides/Outro.svelte";
     import References from "./slides/References.svelte";
-    import Bonus from "./slides/Bonus.svelte";
+    import Paradigm from "./slides/Paradigm.svelte";
+    import Data from "./slides/Data.svelte";
+    import Summary from "./slides/Summary.svelte";
+    import Acknowledgements from "./slides/Acknowledgements.svelte";
 
     let root: HTMLElement;
 
@@ -81,16 +75,10 @@
     <div class="reveal" bind:this={root}>
         <div class="slides">
             <Intro />
-            <Cognitive />
-            <Design />
-            <Clocks />
-            <FigureWiring />
-            <FigureTrigger />
-            <FigureTouch />
-            <Jitter />
-            <Payoff />
-            <Bonus />
-            <Outro />
+            <Paradigm />
+            <Data />
+            <Summary />
+            <Acknowledgements />
             <References />
         </div>
         <footer class="deck-footer">
