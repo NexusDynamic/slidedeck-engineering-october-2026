@@ -15,25 +15,31 @@
                 </li>
                 <li>
                     Behavioural, rated and neural coupling are all higher within
-                    teams than between teams (8 sessions, preliminary).
+                    teams than between teams (8 sessions, preliminary). For
+                    behaviour and EEG, shared action alone would predict this.
                 </li>
                 <li>
                     Knowing who is on your team changes identification before
-                    play starts.
+                    play starts (ratings, exploratory).
                 </li>
             </ul>
         </div>
         <div class="card">
-            <h3>Next</h3>
+            <h3>Next: does team membership add anything?</h3>
             <ul>
                 <li>
-                    Separate team membership from shared action: input coupling
-                    and motor baseline as controls, balanced vs blinded in EEG.
+                    Balanced vs blinded: same teams, same action; only knowing
+                    who your teammates are differs.
                 </li>
-                <li>Complete data collection.</li>
                 <li>
-                    Run the same game with mobile EEG, outside the lab.
+                    Partial out shared action (input coupling, EMG/IMU) and
+                    gaze from the neural coupling.
                 </li>
+                <li>
+                    A null here is informative too: test for equivalence, with
+                    the full sample.
+                </li>
+                <li>Then: the same game with mobile EEG, outside the lab.</li>
             </ul>
         </div>
     </div>

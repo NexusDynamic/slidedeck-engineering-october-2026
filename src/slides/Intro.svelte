@@ -8,22 +8,12 @@
     import { talk } from "../meta";
     import { refs } from "../refs";
 
-    const levels = [
-        {
-            name: "Behavioural",
-            q: "Do teammates act together?",
-            m: "button-press time series",
-        },
-        {
-            name: "Psychological",
-            q: "Do people feel closer to their team?",
-            m: "identification & closeness ratings",
-        },
-        {
-            name: "Neural",
-            q: "Is teammates' EEG more alike?",
-            m: "inter-subject correlation",
-        },
+    // what makes brains line up, from the least to the most interesting
+    const layers = [
+        { name: "shared stimulus", sub: "same room, same screen, same trial timing" },
+        { name: "shared action", sub: "pressing together, steering the same paddle" },
+        { name: "shared attention", sub: "watching the same ball" },
+        { name: "team membership?", sub: 'being on the same side: "us"' },
     ];
 </script>
 
@@ -73,14 +63,14 @@
             <Cite text={[refs.wheatley2024, refs.schilbach2025]} />.
         </li>
         <li>
-            Cooperation and competition have been contrasted in fNIRS <Cite
-                text={refs.czeszumski2022}
-            /> and EEG <Cite text={refs.susnoschi2021} /> hyperscanning, mostly in
-            pairs.
+            Cooperation goes with higher inter-brain synchrony than working
+            alone or resting, mostly in fNIRS
+            <Cite text={[refs.cui2012, refs.czeszumski2022]} />. Direct
+            cooperation vs competition contrasts are fewer, and mixed.
         </li>
         <li>
-            A shared stimulus or a shared action also produces synchrony,
-            without any interaction.
+            Most of this is in pairs. Groups of three or more are rare
+            <Cite text={[refs.dikker2017, refs.reinero2021, refs.zamm2026]} />.
         </li>
     </ul>
     <figure class="paper">
@@ -92,53 +82,70 @@
     </figure>
     {#snippet notes()}
         <p>
-            Coupling can be measured at several levels: what people do, what
-            they report, and their brain activity.
+            Cui et al. 2012 is the closest classic paradigm: two people pressing
+            buttons side by side, trying to press together or faster than the
+            other. Coherence rose in cooperation, not competition. The fNIRS
+            meta-analysis (13 studies) mostly compares cooperation with
+            individual or rest conditions, not with competition.
         </p>
         <p>
-            Left of the figure: no interaction, only the same input, and still
-            similar brain responses. So any group measure has to be compared
-            against people who share the same input but do not interact.
+            Groups: Dikker 2017 (classroom, portable EEG), Reinero 2021 (teams
+            of four; synchrony predicted performance, self-reported
+            identification did not), and the Tapping Orchestra (up to ten
+            people, preprint).
         </p>
     {/snippet}
 </Slide>
 
-<Slide title="Teams: cooperation and competition" prompt="cat question.md">
-    <ul class="compact">
-        <li>
-            Teams as in sport and video games: cooperate within the team,
-            compete with the other team.
-        </li>
-        <li>
-            Assigning people to arbitrary groups is enough to produce in-group
-            preference <Cite text={refs.tajfel1971} />. So teams can be
-            reassigned within a session, and the same people compared as
-            teammates and as opponents.
-        </li>
-    </ul>
-    <Callout label="RESEARCH QUESTION">
-        <p>
-            Is coupling between people higher within a team than between teams,
-            once what everyone in the room shares is accounted for?
-        </p>
-    </Callout>
-    <div class="three">
-        {#each levels as l (l.name)}
-            <div class="box build">
-                <b>{l.name}</b>
-                <span>{l.q}</span>
-                <small>{l.m}</small>
-            </div>
-        {/each}
+<Slide
+    title="But synchrony is easy to get"
+    prompt="grep -c confound"
+    class="split"
+>
+    <div>
+        <ul class="compact">
+            <li>
+                Shared stimuli and shared actions produce synchrony without
+                any interaction <Cite text={[refs.hamilton2021, refs.holroyd2022]} />.
+            </li>
+            <li>
+                Teams, as in sport: cooperate within, compete between, at the
+                same time.
+            </li>
+            <li>
+                Arbitrary groups are enough for in-group preference
+                <Cite text={refs.tajfel1971} />, so teams can be reassigned.
+            </li>
+        </ul>
+        <Callout label="RESEARCH QUESTION">
+            <p>
+                Does team membership modulate coupling between people, beyond
+                what they share in stimulus, environment and action?
+            </p>
+        </Callout>
     </div>
+    <ol class="layers">
+        {#each layers.toReversed() as layer (layer.name)}
+            <li>{layer.name}<small>{layer.sub}</small></li>
+        {/each}
+    </ol>
     {#snippet notes()}
         <p>
-            The longer-term question that motivates this: is a group more than
-            its members? Is there something shared between the people in a group
-            that is not explained by what they each see and do? This study does
-            not answer that yet; it builds the paradigm and checks the measures
-            needed to ask it.
+            Left side of the Schilbach &amp; Redcay figure: no interaction, only
+            the same input, and still similar brain responses. Holroyd's
+            example: two people listening to the same radio station in
+            different rooms.
         </p>
-        <p>The three levels are the structure for the results section.</p>
+        <p>
+            My working expectation is that most of the coupling is explained by
+            the lower layers. The design is set up so that this can be tested
+            rather than assumed: the lower layers are held equal or measured,
+            and only then is team membership compared.
+        </p>
+        <p>
+            Coupling is looked at on three levels: behaviour (button presses),
+            ratings (identification, closeness) and EEG (inter-subject
+            correlation). That is the structure of the results.
+        </p>
     {/snippet}
 </Slide>

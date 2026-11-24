@@ -1,11 +1,49 @@
 <script lang="ts">
+    import Callout from "$site/components/Callout.svelte";
     import Slide from "../components/Slide.svelte";
+    import Cite from "../components/Cite.svelte";
+    import { refs } from "../refs";
 
     // the notebook's figures, in public/
     const img = (name: string) => `${import.meta.env.BASE_URL}images/${name}`;
 </script>
 
 <!-- after the references: only shown if someone asks -->
+
+<Slide title="Backup: measures and timing" prompt="ls data/">
+    <dl class="streams wide">
+        <dt>EEG, EMG, IMU</dt>
+        <dd>all participants recorded simultaneously</dd>
+        <dt>Behaviour</dt>
+        <dd>
+            Each button press and release, game state, aligned to the reference
+            clock
+        </dd>
+        <dt>Ratings</dt>
+        <dd>
+            "I identify with my team" (1–7) <Cite text={refs.postmes2013} />,
+            before each block and after each trial; closeness to own / other
+            team (IOS) <Cite text={refs.aron1992} />, after each block;
+            performance and coordination, after each trial
+        </dd>
+    </dl>
+    <Callout label="TIMING">
+        <p>
+            Events from every device are timestamped with Lab Streaming Layer
+            via liblsl.dart <Cite text={refs.ring2026} /> and aligned to each EEG
+            recording; screen updates are measured with a photodiode.
+        </p>
+    </Callout>
+    {#snippet notes()}
+        <p>
+            To compare several brains, the same game event has to be located in
+            every EEG recording. Six tablets, a coordinator and six amplifiers
+            each run their own clock. liblsl.dart brings Lab Streaming Layer to
+            Flutter apps, which is what the game is built with; the timing was
+            validated with a photodiode and EMG. The JOSS paper has the details.
+        </p>
+    {/snippet}
+</Slide>
 
 <Slide title="Backup: tap-locked EEG" prompt="plot motor-baseline-erp" class="split result">
     <div>

@@ -53,28 +53,29 @@
 </Slide>
 
 <Slide title="Psychological coupling" prompt="plot ratings" class="split result">
-    <ul class="compact">
-        <li>
-            Closer to own team than to the other team (IOS,
-            <span class="stat">+2.2</span> on a 1–7 scale).
-        </li>
-        <li>
-            Teammates hidden (<span class="cond blinded">blinded</span>):
-            identification before play <span class="stat">−2.0</span> vs
-            <span class="cond balanced">balanced</span>; catches up within the
-            block.
-        </li>
-        <li>
-            Skill-sorted: rises for <span class="cond hl">HL high</span>, falls
-            for <span class="cond hl-low">HL low</span> (confounded with
-            winning).
-        </li>
-        <li>
-            Performance ratings, made before the results, track both teams'
-            distance (<span class="stat">ρ = .60</span>,
-            <span class="stat">.53</span>).
-        </li>
-    </ul>
+    <div>
+        <ul class="compact">
+            <li>
+                Closer to own team than to the other team (IOS,
+                <span class="stat">+2.2</span> on a 1–7 scale).
+            </li>
+            <li>
+                Teammates hidden (<span class="cond blinded">blinded</span>):
+                identification before play <span class="stat">−2.0</span> vs
+                <span class="cond balanced">balanced</span>; catches up within the
+                block.
+            </li>
+            <li>
+                Performance ratings, made before the results, track both teams'
+                distance (<span class="stat">ρ = .60</span>,
+                <span class="stat">.53</span>): players follow the other team too.
+            </li>
+        </ul>
+        <p class="aside">
+            Exploratory. In teams of four, self-reported identification did not
+            track inter-brain synchrony <Cite text={refs.reinero2021} />.
+        </p>
+    </div>
     <figure class="plot stack">
         <img
             src={img("sisi.png")}
@@ -103,6 +104,10 @@
         <p>
             The performance ratings show that participants follow both teams'
             progress, not only their own.
+        </p>
+        <p>
+            Skill-sorted blocks: identification rises for the high team and
+            falls for the low team, but that is confounded with winning.
         </p>
     {/snippet}
 </Slide>
@@ -153,6 +158,13 @@
         <p>
             So for now this is a sanity check of the EEG and the counterpart of
             the behavioural result, not evidence about team identity by itself.
+        </p>
+        <p>
+            Other group ≈ time-shifted: shared trial timing alone does not
+            produce this ISC. Other team &gt; other group: being in the same room
+            and watching the same screen does. Own &gt; other team: team
+            membership, joint action on the paddle and shared gaze are all
+            still mixed together in this step.
         </p>
     {/snippet}
 </Slide>

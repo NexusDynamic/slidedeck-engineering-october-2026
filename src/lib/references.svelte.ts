@@ -10,8 +10,9 @@ export const register = (text: string): number => {
 	return i;
 };
 
-// "H.", "M. G.", "S. H.-Y.", "Ch."; a lone capital without its full stop ("L. D") counts too
-const INITIALS = /^([A-Z][a-z]?\.[\s-]*|[A-Z](?=[\s-]|$)[\s-]*)+$/;
+// "H.", "M. G.", "S. H.-Y.", "Ch."; a lone capital without its full stop ("L. D") counts too,
+// and so does a particle between initials ("A. F. de C.")
+const INITIALS = /^([A-Z][a-z]?\.[\s-]*|[A-Z](?=[\s-]|$)[\s-]*|(?:de|van|von|der)\s+)+$/;
 
 /**
  * The in-text form of an APA reference, read from its text: "Tajfel et al., 1971",

@@ -1,5 +1,4 @@
 <script lang="ts">
-    import Callout from "$site/components/Callout.svelte";
     import game from "$siteStatic/_assets/images/_vault/rise-together/rise-together.webp";
     import Slide from "../components/Slide.svelte";
     import Cite from "../components/Cite.svelte";
@@ -62,7 +61,12 @@
             No game experience required and no prescribed strategy: how a team
             coordinates is left to the team.
         </li>
-        <li>Runs on tablets and phones, browser. Potential to run anywhere.</li>
+        <li>
+            One Flutter codebase for tablets, phones, desktop and browser; game
+            events are timed with Lab Streaming Layer
+            <Cite text={[refs.kothe2025, refs.ring2026]} />, so the same game
+            can be used in and out of the lab.
+        </li>
     </ul>
     <figure>
         <img
@@ -80,6 +84,11 @@
         <p>
             Cooperation inside the team and competition between teams are built
             in the way they are in team sports.
+        </p>
+        <p>
+            So far it has only been run in the lab, with the six-person EEG
+            setup. The out-of-lab use is what the implementation allows, not
+            something tested yet; running it with mobile EEG is a next step.
         </p>
     {/snippet}
 </Slide>
@@ -111,6 +120,12 @@
             <li>Six participants, two teams of three, reassigned each block</li>
             <li>Block order counterbalanced over sessions</li>
             <li>
+                Recorded: EEG, EMG and IMU from everyone; every button press and
+                the game state; team identification <Cite
+                    text={refs.postmes2013}
+                /> and closeness (IOS) <Cite text={refs.aron1992} />
+            </li>
+            <li>
                 So far: <span class="stat">8 sessions, n = 48</span> (EEG from 45)
             </li>
         </ul>
@@ -126,40 +141,11 @@
             In the skill-sorted blocks the high team won nearly every trial
             (95%), so that contrast is also winners vs losers.
         </p>
-    {/snippet}
-</Slide>
-
-<Slide title="Measures" prompt="ls data/">
-    <dl class="streams wide">
-        <dt>EEG, EMG, IMU</dt>
-        <dd>all participants recorded simultaneously</dd>
-        <dt>Behaviour</dt>
-        <dd>
-            Each button press and release, game state, aligned to the reference
-            clock
-        </dd>
-        <dt>Ratings</dt>
-        <dd>
-            "I identify with my team" (1–7) <Cite text={refs.postmes2013} />,
-            before each block and after each trial; closeness to own / other
-            team (IOS) <Cite text={refs.aron1992} />, after each block;
-            performance and coordination, after each trial
-        </dd>
-    </dl>
-    <Callout label="TIMING">
         <p>
-            Events from every device are timestamped with Lab Streaming Layer
-            via liblsl.dart <Cite text={refs.ring2026} /> and aligned to each EEG
-            recording; screen updates are measured with a photodiode.
-        </p>
-    </Callout>
-    {#snippet notes()}
-        <p>
-            To compare several brains, the same game event has to be located in
-            every EEG recording. Six tablets, a coordinator and six amplifiers
-            each run their own clock. liblsl.dart brings Lab Streaming Layer to
-            Flutter apps, which is what the game is built with; the timing was
-            validated with a photodiode and EMG. The JOSS paper has the details.
+            Identification is rated before each block and after each trial,
+            closeness to own and other team after each block. Timing: every
+            device is timestamped with LSL and aligned to each EEG recording;
+            screen updates were checked with a photodiode (backup slide).
         </p>
     {/snippet}
 </Slide>
