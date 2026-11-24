@@ -11,6 +11,7 @@
     import Paradigm from "./slides/Paradigm.svelte";
     import Data from "./slides/Data.svelte";
     import Summary from "./slides/Summary.svelte";
+    import Backup from "./slides/Backup.svelte";
     import Acknowledgements from "./slides/Acknowledgements.svelte";
 
     let root: HTMLElement;
@@ -80,6 +81,7 @@
             <Summary />
             <Acknowledgements />
             <References />
+            <Backup />
         </div>
         <footer class="deck-footer">
             <AuLogo />
