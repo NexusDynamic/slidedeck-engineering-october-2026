@@ -3,7 +3,7 @@
     import Reveal, { type RevealApi } from "reveal.js";
     import Notes from "reveal.js/plugin/notes";
     import Zoom from "reveal.js/plugin/zoom";
-    import { reveal } from "./lib/deck.svelte";
+    import { printing, reveal } from "./lib/deck.svelte";
     import { talk } from "./meta";
     import AuLogo from "./components/AuLogo.svelte";
     import Intro from "./slides/Intro.svelte";
@@ -15,6 +15,7 @@
     import Acknowledgements from "./slides/Acknowledgements.svelte";
 
     let root: HTMLElement;
+    let footer: HTMLElement;
 
     onMount(() => {
         // ?theme=light starts on the light theme; T switches while presenting
@@ -52,6 +53,16 @@
             { keyCode: 84, key: "T", description: "Light / dark theme" },
             () => document.documentElement.classList.toggle("dark"),
         );
+        // the live deck has one footer over all the slides; a PDF gets a copy on each page
+        // (except the bare slides, which carry their own logo)
+        if (printing) {
+            api.on("pdf-ready", () => {
+                for (const page of root.querySelectorAll(".pdf-page")) {
+                    if (page.querySelector(':scope > section[data-state~="bare"]')) continue;
+                    page.appendChild(footer.cloneNode(true));
+                }
+            });
+        }
         api.initialize().then(() => (reveal.api = api));
 
         // a button or slider that keeps focus after the mouse lets go would swallow the clicker's
@@ -83,9 +94,11 @@
             <References />
             <Backup />
         </div>
-        <footer class="deck-footer">
+        <footer class="deck-footer" bind:this={footer}>
             <AuLogo />
-            <span>{talk.author} · {talk.title}</span>
+            <span>{talk.author} · {talk.institution}</span>
+            <span class="sep" aria-hidden="true">//</span>
+            <span>{talk.occasion} · {talk.date}</span>
         </footer>
     </div>
 </div>

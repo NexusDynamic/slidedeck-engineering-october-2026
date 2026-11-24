@@ -1075,8 +1075,12 @@ body {
 .reveal .deck-footer .au-logo {
 	height: 30px;
 }
+.reveal .deck-footer .sep {
+	margin-inline: -8px;
+	color: var(--color-accent);
+}
 /* slides with data-state="bare" carry their own logo */
-.bare .reveal .deck-footer {
+.bare .reveal > .deck-footer {
 	opacity: 0;
 }
 
@@ -1214,8 +1218,9 @@ html.reveal-print body {
 		padding-bottom: 56px !important;
 	}
 }
-/* these belong to the live deck: one footer for all slides, and controls nobody can press */
-html.reveal-print .reveal .deck-footer,
+/* these belong to the live deck: one footer over all the slides (each page gets its own copy,
+   see Deck.svelte), and controls nobody can press */
+html.reveal-print .reveal > .deck-footer,
 html.reveal-print .reveal .theme-toggle,
 html.reveal-print .reveal .timing-fig .playback {
 	display: none !important;
