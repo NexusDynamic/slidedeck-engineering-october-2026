@@ -58,11 +58,24 @@
     </div>
     {#snippet notes()}
         <p>
-            The longer-term question stays open: whether there is something
-            shared within a group beyond what its members see and do. The
-            balanced vs blinded contrast is the most direct test available in
-            this design, because the teams are built the same way and only the
-            knowledge differs.
+            The longer-term question is still open: whether there is something
+            shared within a group beyond what its members see and do. For this
+            experiment, the balanced vs blinded comparison within a group is
+            probably the closest thing we get to being able to differentiate it,
+            and if we base anything on the participants own ratings of
+            identification, then it seems that even in a game where they don't
+            know who they are playing with, they still build up an identity of
+            their own team. (That said, it's quite likely by the end of the
+            block, they figure out who their team-mates are via non-verbal
+            cues).
+        </p>
+        <p>
+            And that's where we are at so far, I would be very happy for any
+            ideas or suggestions for how to probe further into this question,
+            and I'm planning on making the data and source code open and
+            available to anyone, because I think we have a really nice dataset
+            here and much more can be done with it besides the kind of analyses
+            I want to do.
         </p>
     {/snippet}
 </Slide>

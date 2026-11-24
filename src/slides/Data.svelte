@@ -46,12 +46,17 @@
     </figure>
     {#snippet notes()}
         <p>
-            Each dot is a team in one block, averaged over its trials. Lines
-            join the same team across the four levels.
+            Each dot is a team in one block, averaged over the block's trials.
+            Lines join the same team across the four levels.
         </p>
         <p>
-            Skill-sorted teams: the high team's inputs were more coupled than
-            the low team's (Δr = 0.11, sign-flip test over groups, p = .016).
+            Skill-sorted teams: perhaps unsurprisingly, the high team's inputs
+            were more coupled than the low team's
+        </p>
+        <p>
+            This is a nice validation of the behavioural data - if people are
+            trying to work together, then there should be more correlation of
+            actions within that team.
         </p>
     {/snippet}
 </Slide>
@@ -99,24 +104,31 @@
         </figcaption>
     </figure>
     {#snippet notes()}
+        <p>Preliminary analysis of some of the survey results show:</p>
+        <ul>
+            <li>
+                A lower rating of identification when the teammates are unknown
+            </li>
+            <li>
+                In mixed-skill blocks, win rate predicts closeness and
+                coordination ratings (again perhaps unsurprisingly, people might
+                feel good about being on the winning team)
+            </li>
+        </ul>
+
         <p>
-            Linear mixed models with random intercepts for groups and
-            participant. Pre-block identification is rated after the teams are
-            announced but before playing: in blinded blocks, that is all the
-            information people have.
+            The performance ratings show that participants are generally pretty
+            good at judging both their own team, and the opponent team's
+            performance
         </p>
         <p>
-            The skill-sorted high team won 95% of trials, so the HL contrast
-            cannot separate skill from winning. In mixed-skill blocks, win rate
-            predicts closeness and coordination ratings.
+            Skill-sorted: Identification rises for the high team and falls for
+            the low team, but that is confounded with winning / losing each
+            trial
         </p>
         <p>
-            The performance ratings show that participants follow both teams'
-            progress, not only their own.
-        </p>
-        <p>
-            Skill-sorted blocks: identification rises for the high team and
-            falls for the low team, but that is confounded with winning.
+            [Stats, if asked: Linear mixed models with random intercepts for
+            groups and participant]
         </p>
     {/snippet}
 </Slide>
@@ -160,26 +172,20 @@
     </figure>
     {#snippet notes()}
         <p>
-            Preprocessing: 1–40 Hz, bad channels interpolated, average
-            reference, EOG regressed out. The spatial filters never see team
-            labels, and fitting them without the held-out groups avoids circular
-            analysis.
+            Here we see a similar trend to the behavioural data, and the same
+            pattern holds for components 2 and 3 of ISC
         </p>
         <p>
-            The same pattern holds for components 2 and 3 and for the raw
-            channels (own vs other team). The other team vs other group step is
-            only present for C1 and the channels.
+            For now this is a sanity check of the EEG and a counterpart to
+            behavioural data.
         </p>
         <p>
-            So for now this is a sanity check of the EEG and the counterpart of
-            the behavioural result, not evidence about team identity by itself.
+            Own > other team: team membership, joint action, shared gaze and
+            environment are all still mixed together.
         </p>
         <p>
-            Other group ≈ time-shifted: shared trial timing alone does not
-            produce this ISC. Other team &gt; other group: being in the same
-            room and watching the same screen does. Own &gt; other team: team
-            membership, joint action on the paddle and shared gaze are all still
-            mixed together in this step.
+            [Preprocessing, if asked: 1–40 Hz, bad channels interpolated,
+            average reference, EOG regressed out.]
         </p>
     {/snippet}
 </Slide>
@@ -230,15 +236,24 @@
     </figure>
     {#snippet notes()}
         <p>
-            Methods, if asked (notebook: RiseTogether-analysis
-            explore/s04_isc_test.ipynb, "ICA-cleaned bubble and tap responses").
+            Data: motor baseline/localizer task, 3 mins per person, where
+            bubbles appear simultaneously on all participant's iPads.
         </p>
         <p>
-            Data: motor baseline, 179.6 s per person (the shortest group
-            recording), starting at each tablet's first bubble on screen
+            This just gives as another nice plot to show, but more importantly
+            an extra confirmation that we're managing to collect good data. And
+            somewhere around the 300 ms mark is where we'd expect the
+            participants to actually tap the bubble.
+        </p>
+        <p>
+            We can see what's very likely a P200 visual response from the
+            participants.
+        </p>
+        <p>---------------------quick ref----------------</p>
+        <p>
             (photodiode; 3 people without a photodiode onset: estimated from the
             tablet log; where both exist, the estimate is off by SD 3.7 ms, at
-            most 14 ms). 45 participants in 8 groups. Recorded at 500 Hz.
+            most 14 ms). 45 participants in 8 groups.
         </p>
         <p>
             Preprocessing: known bad channels marked (lab notes and a
@@ -274,17 +289,6 @@
             mean of the left and right kernels; then the grand average over
             participants. No baseline correction (the model has none to need).
             GFP = standard deviation over electrodes at each moment.
-        </p>
-        <p>
-            Why bother: without eye cleaning there is a large frontal peak at
-            ~176 ms. The EOG shows it is the saccade to the bubble (median 145
-            ms after it appears, IQR 121–174 ms). Plain EOG regression leaves
-            the saccadic spike; ICA removes most of it. The posterior response
-            on the opposite side survives, so that part is visual, not ocular.
-        </p>
-        <p>
-            Tap-locked (if shown): central positivity ~80 ms, fronto-central
-            ~230 ms, under 2 µV.
         </p>
     {/snippet}
 </Slide>

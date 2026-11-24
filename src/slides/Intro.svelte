@@ -88,17 +88,25 @@
     </figure>
     {#snippet notes()}
         <p>
-            Cui et al. 2012 is the closest classic paradigm: two people pressing
-            buttons side by side, trying to press together or faster than the
-            other. Coherence rose in cooperation, not competition. The fNIRS
-            meta-analysis (13 studies) mostly compares cooperation with
-            individual or rest conditions, not with competition.
+            Cui et al. 2012 ~ along the same lines: two people pressing buttons
+            side by side, trying to press together or faster than the other.
+            (fNIRS, wavelet) Coherence rose in cooperation, not competition.
+            There's an fNIRS meta-analysis (13 studies) that mostly compares
+            cooperation with individual or rest conditions, not with
+            competition.
         </p>
         <p>
-            Groups: Dikker 2017 (classroom, portable EEG), Reinero 2021 (teams
-            of four; synchrony predicted performance, self-reported
-            identification did not), and the Tapping Orchestra (up to ten
-            people, preprint).
+            There are some studies with groups: classroom, portable EEG (Dikker
+            2017) Teams of four; synchrony predicted performance, self-reported
+            identification did not (Reinero 2021), and the Tapping Orchestra
+            study with up to ten people (Anna and Simon preprint).
+        </p>
+        <p>
+            We can use recorded brain data to analyse neural synchrony, figure
+            shows interactive synchrony and similarity as two distinct things.
+            Left side of, figure: no interaction, only the same input, and still
+            similar brain responses. Holroyd's (critical) example: two people
+            listening to the same radio station in different rooms.
         </p>
     {/snippet}
 </Slide>
@@ -139,21 +147,20 @@
     </ol>
     {#snippet notes()}
         <p>
-            Left side of the Schilbach &amp; Redcay figure: no interaction, only
-            the same input, and still similar brain responses. Holroyd's
-            example: two people listening to the same radio station in different
-            rooms.
+            Intuitively, there is something that feels different about two
+            people doing the same thing separately, or jointly, but it's hard to
+            get at with the tools we currently have.
         </p>
         <p>
-            My working expectation is that most of the coupling is explained by
-            the lower layers. The design is set up so that this can be tested
-            rather than assumed: the lower layers are held equal or measured,
-            and only then is team membership compared.
+            My expectation is that most of the coupling is explained by the
+            shared aspects of what a participant is doing. My experiment is
+            designed to try and account for and be able to measure the lower
+            layers, and investigate what's remaining.
         </p>
         <p>
             Coupling is looked at on three levels: behaviour (button presses),
             ratings (identification, closeness) and EEG (inter-subject
-            correlation). That is the structure of the results.
+            correlation).
         </p>
     {/snippet}
 </Slide>

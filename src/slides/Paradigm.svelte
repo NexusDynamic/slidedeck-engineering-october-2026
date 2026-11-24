@@ -92,18 +92,20 @@
     </figure>
     {#snippet notes()}
         <p>
-            Two buttons keep movement, and with it muscle artefact, to a
-            minimum. The interaction is real time and unscripted: what happens
-            in a trial depends on the players, not on the experimenter.
+            Two thumb buttons keep movement and muscle artefacts, to a minimum.
         </p>
         <p>
-            Cooperation inside the team and competition between teams are built
-            in the way they are in team sports.
+            Participant interaction is real time and unscripted: what happens in
+            a trial depends on the players.
         </p>
         <p>
-            So far it has only been run in the lab, with the six-person EEG
-            setup. The out-of-lab use is what the implementation allows, not
-            something tested yet; running it with mobile EEG is a next step.
+            Cooperation inside the team and competition between teams is similar
+            to how it exists in team sports.
+        </p>
+        <p>
+            While we have been running the experiment so far as a lab
+            experiment, the experiment can easily be run on different hardware
+            in different labs and with portable neuroimaging equipment.
         </p>
     {/snippet}
 </Slide>
@@ -147,20 +149,19 @@
     </div>
     {#snippet notes()}
         <p>
-            Individual rounds give each person a skill rank, which is used to
-            build the teams. Balanced vs blinded: the teams are built the same
-            way, only whether people know who their teammates are differs. That
-            is the top-down manipulation.
+            Trials played individually give each person a skill rank, which we
+            use to build the teams. There is a top-down manipulation of blinded
+            and non-blinded for the rank-balanced teams and the skill-sorted
+            blocks are formed from the top 3 and the bottom 3, and the
+            high-performing team won nearly every trial (~95%).
         </p>
         <p>
-            In the skill-sorted blocks the high team won nearly every trial
-            (95%), so that contrast is also winners vs losers.
-        </p>
-        <p>
-            Identification is rated before each block and after each trial,
-            closeness to own and other team after each block. Timing: every
-            device is timestamped with LSL and aligned to each EEG recording;
-            screen updates were checked with a photodiode (backup slide).
+            For the survey questions:<br />
+            Identification with a team is rated before each block and after each trial,
+            closeness to own and other team after each block. Timing: every device
+            is timestamped with LSL and aligned to each EEG recording; screen latencies
+            were checked with a photodiode. Some more information about the timing
+            can be found in my liblsl paper.
         </p>
     {/snippet}
 </Slide>
@@ -217,14 +218,11 @@
     </p>
     {#snippet notes()}
         <p>
-            Time-shifted is the chance level: each person's series is shifted by
-            at least ten seconds, which keeps its own structure but breaks the
-            alignment in time.
+            We can compare correlation of behaviour and neural data within a
+            team, across teams that play together, across groups of participants
+            and against circular-shifted surrogate data (to get a chance level
+            estimate).
         </p>
-        <p>
-            Statistics: own vs other team by permuting team labels within a
-            block; other team vs other group by sign flips over groups. Groups
-            are the independent unit.
-        </p>
+        <p>Groups of participants stay independent.</p>
     {/snippet}
 </Slide>
