@@ -19,5 +19,8 @@ export const refs = {
 	glover1999: `Glover, G. H. (1999). Deconvolution of Impulse Response in Event-Related BOLD fMRI. NeuroImage, 9(4), 416–429. ${doi('10.1006/nimg.1998.0419')}`,
 	ring2026: `Ring, L. D., Zamm, A., Mathys, C. & Kappel, S. L. (2026). liblsl.dart: A Dart native API for Lab Streaming Layer (LSL). Journal of Open Source Software, 11(122), 10425, ${doi('10.21105/joss.10425')}`,
 	parra2019: `Parra, L. C., Haufe, S., & Dmochowski, J. P. (2019). Correlated Components Analysis — Extracting Reliable Dimensions in Multivariate Data. Neurons, Behavior, Data Analysis, and Theory, 2(1). ${doi('10.51628/001c.7125')}`,
-	vesper2010:`Vesper, C., Butterfill, S., Knoblich, G., & Sebanz, N. (2010). A minimal architecture for joint action. Neural Networks, 23(8–9), 998–1003. ${doi('10.1016/j.neunet.2010.06.002')}`
+	vesper2010:`Vesper, C., Butterfill, S., Knoblich, G., & Sebanz, N. (2010). A minimal architecture for joint action. Neural Networks, 23(8–9), 998–1003. ${doi('10.1016/j.neunet.2010.06.002')}`,
+	dimigen2020: `Dimigen, O. (2020). Optimizing the ICA-based removal of ocular EEG artifacts from free viewing experiments. NeuroImage, 207, 116117. ${doi('10.1016/j.neuroimage.2019.116117')}`,
+	ehinger2019: `Ehinger, B. V., & Dimigen, O. (2019). Unfold: an integrated toolbox for overlap correction, non-linear modeling, and regression-based EEG analysis. PeerJ, 7, e7838. ${doi('10.7717/peerj.7838')}`,
+	piontonachini2019: `Pion-Tonachini, L., Kreutz-Delgado, K., & Makeig, S. (2019). ICLabel: An automated electroencephalographic independent component classifier, dataset, and website. NeuroImage, 198, 181–197. ${doi('10.1016/j.neuroimage.2019.05.026')}`
 };

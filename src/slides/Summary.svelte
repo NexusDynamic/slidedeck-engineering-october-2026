@@ -4,14 +4,19 @@
     import { talk } from "../meta";
 </script>
 
-<Slide title="Summary and next steps" prompt="tail rise-together" class="summary">
+<Slide
+    title="Summary and next steps"
+    prompt="tail rise-together"
+    class="summary"
+>
     <div class="versus">
         <div class="card">
             <h3>So far</h3>
             <ul>
                 <li>
-                    A team game with unscripted, real-time interaction, and event
-                    timing that allows EEG comparison across six people.
+                    A team game with unscripted, real-time interaction, and
+                    event timing that allows EEG + behavioural comparison across
+                    groups of six people.
                 </li>
                 <li>
                     Behavioural, rated and neural coupling are all higher within
@@ -28,27 +33,27 @@
             <h3>Next: does team membership add anything?</h3>
             <ul>
                 <li>
-                    Balanced vs blinded: same teams, same action; only knowing
-                    who your teammates are differs.
+                    Balanced vs blinded: same teams, same action, the
+                    differeince is knowing who is on your team.
                 </li>
                 <li>
-                    Partial out shared action (input coupling, EMG/IMU) and
-                    gaze from the neural coupling.
+                    Partial out shared action (input coupling, EMG/IMU) and gaze
+                    from the neural coupling (ideas?).
                 </li>
                 <li>
-                    A null here is informative too: test for equivalence, with
-                    the full sample.
+                    A null is informative too, we need to look elsewhere for a
+                    marker of group identity in the brain.
                 </li>
-                <li>Then: the same game with mobile EEG, outside the lab.</li>
+                <li>Different group sizes? Outside the lab?</li>
             </ul>
         </div>
     </div>
     <div class="play">
         <Qr value={talk.gameUrl} />
         <p class="try">
-            Try the game:<br /><a href={talk.gameUrl}
-                >{talk.gameUrl.replace(/^https:\/\/|\/$/g, "")}</a
-            >
+            Try the game:<br /><a href={talk.gameUrl}>
+                {talk.gameUrl.replace(/^https:\/\/|\/$/g, "")}
+            </a>
         </p>
     </div>
     {#snippet notes()}

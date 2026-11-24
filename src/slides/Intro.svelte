@@ -10,8 +10,14 @@
 
     // what makes brains line up, from the least to the most interesting
     const layers = [
-        { name: "shared stimulus", sub: "same room, same screen, same trial timing" },
-        { name: "shared action", sub: "pressing together, steering the same paddle" },
+        {
+            name: "shared stimulus",
+            sub: "same room, same screen, same trial timing",
+        },
+        {
+            name: "shared action",
+            sub: "pressing together, steering the same paddle",
+        },
         { name: "shared attention", sub: "watching the same ball" },
         { name: "team membership?", sub: 'being on the same side: "us"' },
     ];
@@ -69,7 +75,7 @@
             cooperation vs competition contrasts are fewer, and mixed.
         </li>
         <li>
-            Most of this is in pairs. Groups of three or more are rare
+            Most of this is in dyads. Groups of three or more are rare
             <Cite text={[refs.dikker2017, refs.reinero2021, refs.zamm2026]} />.
         </li>
     </ul>
@@ -105,8 +111,10 @@
     <div>
         <ul class="compact">
             <li>
-                Shared stimuli and shared actions produce synchrony without
-                any interaction <Cite text={[refs.hamilton2021, refs.holroyd2022]} />.
+                Shared stimuli and shared actions produce synchrony without any
+                interaction <Cite
+                    text={[refs.hamilton2021, refs.holroyd2022]}
+                />.
             </li>
             <li>
                 Teams, as in sport: cooperate within, compete between, at the
@@ -133,8 +141,8 @@
         <p>
             Left side of the Schilbach &amp; Redcay figure: no interaction, only
             the same input, and still similar brain responses. Holroyd's
-            example: two people listening to the same radio station in
-            different rooms.
+            example: two people listening to the same radio station in different
+            rooms.
         </p>
         <p>
             My working expectation is that most of the coupling is explained by

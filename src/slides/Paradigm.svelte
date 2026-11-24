@@ -34,12 +34,27 @@
     ];
 
     // what each comparison level shares, from most to least
-    const shared = ["task", "trial onset", "room & screen", "paddle & goal"];
+    const shared = ["task", "trial onset", "room", "screen", "paddle & goal"];
     const levels = [
-        { name: "own team", has: 4, sub: "pairs within a team" },
-        { name: "other team", has: 3, sub: "same trial, opposing team" },
-        { name: "other group", has: 2, sub: "same trial, another session" },
-        { name: "time-shifted", has: 0, sub: "own team, shifted ≥ 10 s" },
+        { name: "own team", has: 5, sub: "pairs within a team", half: null },
+        {
+            name: "other team",
+            has: 4,
+            sub: "same trial, opposing team",
+            half: 4,
+        },
+        {
+            name: "other group",
+            has: 3,
+            sub: "same trial, another group of participants",
+            half: 3,
+        },
+        {
+            name: "time-shifted/surrogate",
+            has: 0,
+            sub: "own team, shifted ≥ 10 s",
+            half: null,
+        },
     ];
 </script>
 
@@ -93,7 +108,7 @@
     {/snippet}
 </Slide>
 
-<Slide title="Session design" prompt="cat design.md">
+<Slide title="Experiment design" prompt="cat design.md">
     <ol class="timeline">
         {#each phases as p (p.name)}
             <li class:joint={p.joint}>
@@ -117,8 +132,8 @@
             </tbody>
         </table>
         <ul class="compact">
-            <li>Six participants, two teams of three, reassigned each block</li>
-            <li>Block order counterbalanced over sessions</li>
+            <li>Groups of six. Two teams of three, reassigned per block</li>
+            <li>Block order counterbalanced over groups of participants</li>
             <li>
                 Recorded: EEG, EMG and IMU from everyone; every button press and
                 the game state; team identification <Cite
@@ -126,7 +141,7 @@
                 /> and closeness (IOS) <Cite text={refs.aron1992} />
             </li>
             <li>
-                So far: <span class="stat">8 sessions, n = 48</span> (EEG from 45)
+                So far: <span class="stat">8 groups, n = 48</span> (EEG from 45)
             </li>
         </ul>
     </div>
@@ -150,9 +165,9 @@
     {/snippet}
 </Slide>
 
-<Slide title="What is compared" prompt="cat analysis.md">
+<Slide title="Comparisons" prompt="cat analysis.md">
     <table class="levels">
-        <caption>what each pair has in common, aligned in time</caption>
+        <caption>common features across comparisons</caption>
         <thead>
             <tr>
                 <th></th>
@@ -164,25 +179,42 @@
                 <tr>
                     <th>{l.name}<small>{l.sub}</small></th>
                     {#each shared as s, i (s)}
-                        <td class:on={i < l.has}>{i < l.has ? "●" : "○"}</td>
+                        {#if l.half && l.half == i + 1}
+                            <td class="on half">◐</td>
+                        {:else}
+                            <td class:on={i < l.has}>
+                                {i < l.has ? "●" : "○"}
+                            </td>
+                        {/if}
                     {/each}
                 </tr>
             {/each}
         </tbody>
     </table>
     <ul class="compact">
+        <li>The same comparison levels can be used for behaviour and EEG.</li>
         <li>
-            The same four levels, computed the same way, for behaviour and EEG.
+            <strong>vs other team</strong>: same task, room and screen<sup>
+                *
+            </sup>. differs in team membership <em>and</em> in shared control of the
+            paddle.
         </li>
         <li>
-            <strong>own vs other team</strong>: same room and screen; differs in
-            team membership <em>and</em> in shared control of the paddle.
-        </li>
-        <li>
-            <strong>other team vs other group</strong>: the effect of being in
-            the same room and seeing the same screen.
+            <strong>vs other group</strong>: same task and room<sup>^</sup>.
         </li>
     </ul>
+    <p>
+        <small>
+            <sup>*</sup> While they see the play of their own team and the opponent,
+            it diverges once there is a distance between the teams
+        </small>
+    </p>
+    <p>
+        <small>
+            <sup>^</sup> Of course, the weather can mean slightly different lighting
+            conditions. Time of day might affect participant alertness.
+        </small>
+    </p>
     {#snippet notes()}
         <p>
             Time-shifted is the chance level: each person's series is shifted by
@@ -191,8 +223,8 @@
         </p>
         <p>
             Statistics: own vs other team by permuting team labels within a
-            block; other team vs other group by sign flips over sessions.
-            Sessions are the independent unit.
+            block; other team vs other group by sign flips over groups. Groups
+            are the independent unit.
         </p>
     {/snippet}
 </Slide>

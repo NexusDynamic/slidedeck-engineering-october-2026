@@ -146,7 +146,11 @@ body {
 .reveal .prompt span {
 	color: var(--color-accent);
 }
-
+.reveal .term {
+	font-family: var(--font-mono);
+	font-size: 0.75em;
+	display: inline;
+}
 .reveal a {
 	color: var(--color-accent-strong);
 	text-decoration: underline;
@@ -376,6 +380,10 @@ body {
 .reveal .timeline small {
 	color: var(--color-fg-muted);
 }
+.reveal p small {
+	color: var(--color-fg-muted);
+	font-size: 0.5em;
+}
 .reveal .design-grid {
 	display: grid;
 	grid-template-columns: 1.4fr 1fr;
@@ -445,8 +453,12 @@ body {
 .reveal table.levels tbody tr th {
 	border-top: 1px solid var(--color-line);
 }
+.reveal table.levels td.half {
+    font-size: 0.6em;
+}
 .reveal table.levels td.on {
 	color: var(--color-accent);
+
 }
 
 /* closing: the summary, and the game to try */
