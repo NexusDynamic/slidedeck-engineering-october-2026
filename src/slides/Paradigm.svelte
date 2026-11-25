@@ -7,7 +7,7 @@
         {
             id: "control",
             name: "Social control",
-            sub: "matched teams, <b>blinded</b> to who is on them",
+            sub: "rank-balanced for skill, <b>blinded</b> to team composition",
         },
         {
             id: "matched",
@@ -22,11 +22,15 @@
     ];
 </script>
 
-<Slide title="Rise Together: a game for teams" prompt="cat paradigm.md" class="split game">
+<Slide
+    title="Rise Together: a game for teams"
+    prompt="cat paradigm.md"
+    class="split game"
+>
     <ul class="lead">
         <li>
-            Each team of three lifts <strong>one</strong> paddle; full speed
-            needs every player.
+            Each team of three lifts <strong>one</strong> paddle; full speed needs
+            every player.
         </li>
         <li>Both teams play at once. The team that gets further wins.</li>
     </ul>
@@ -50,16 +54,17 @@
         </p>
         <p>
             One Flutter codebase for tablets, phones, desktop and browser; game
-            events are timed with Lab Streaming Layer (Kothe 2025; my liblsl.dart,
-            Ring 2026), so the same game can be used in and out of the lab.
+            events are timed with Lab Streaming Layer (Kothe 2025; my
+            liblsl.dart, Ring 2026), so the same game can be used in and out of
+            the lab.
         </p>
     {/snippet}
 </Slide>
 
 <Slide title="Experiment design" prompt="cat design.md" class="design">
     <p class="design-n">
-        <span class="stat">N = 45</span> · 8 groups of 6 (3 excluded) · EEG ·
-        EMG · IMU
+        <span class="stat">N = 45</span> · 8 groups of 6 (3 excluded) · EEG · EMG
+        · IMU
     </p>
     <div class="design-tree">
         <div class="phase" style:grid-column="1">
@@ -85,7 +90,9 @@
                 vector-effect="non-scaling-stroke"
             />
         </svg>
-        <p class="counterbalance">condition order counterbalanced across groups</p>
+        <p class="counterbalance">
+            condition order counterbalanced across groups
+        </p>
         {#each conditions as c (c.id)}
             <div class="cond-card {c.id}">
                 <b>{c.name}</b>
@@ -118,8 +125,8 @@
         <p>
             Recorded from everyone: EEG, EMG and IMU; every button press and the
             game state. Team identification (SISI) before each condition and
-            after each trial. Every device is timestamped with LSL and aligned to
-            each EEG recording; screen latencies checked with a photodiode.
+            after each trial. Every device is timestamped with LSL and aligned
+            to each EEG recording; screen latencies checked with a photodiode.
         </p>
     {/snippet}
 </Slide>
