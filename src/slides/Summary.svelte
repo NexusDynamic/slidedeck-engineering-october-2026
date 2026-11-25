@@ -51,19 +51,25 @@
         <div class="link-block">
             <Qr value={talk.gameUrl} />
             <p class="try">
-                Try the game:<br /><a href={talk.gameUrl}>{short(talk.gameUrl)}</a>
+                Try the game:<br /><a href={talk.gameUrl}>
+                    {short(talk.gameUrl)}
+                </a>
             </p>
         </div>
         <div class="link-block">
             <Qr value={talk.paperUrl} />
             <p class="try">
-                liblsl.dart (JOSS):<br /><a href={talk.paperDoi}>{short(talk.paperDoi)}</a>
+                liblsl.dart (JOSS):<br /><a href={talk.paperDoi}>
+                    {short(talk.paperDoi)}
+                </a>
             </p>
         </div>
         <div class="link-block">
             <Qr value={talk.slidesUrl} />
             <p class="try">
-                These slides:<br /><a href={talk.slidesUrl}>{short(talk.slidesUrl)}</a>
+                These slides:<br /><a href={talk.slidesUrl}>
+                    {short(talk.slidesUrl)}
+                </a>
             </p>
         </div>
     </div>
@@ -71,9 +77,9 @@
         <p>
             So: a naturalistic video-game task in which we can measure EEG from
             groups. Coupling, on all three levels, is modulated by team: players
-            are more coordinated with their own team; identification is shaped by
-            performance and by knowing who is on your team; and neural coupling
-            is highest within teams.
+            are more coordinated with their own team; identification is shaped
+            by performance and by knowing who is on your team; and neural
+            coupling is highest within teams.
         </p>
         <p>Next:</p>
         <ul>
@@ -89,8 +95,8 @@
                 your team).
             </li>
             <li>
-                The oscillatory dynamics: rhythms are likely to show up in a task
-                like this.
+                The oscillatory dynamics: rhythms are likely to show up in a
+                task like this.
             </li>
             <li>
                 What the component reflects (backup: EEG, saccades, ICA

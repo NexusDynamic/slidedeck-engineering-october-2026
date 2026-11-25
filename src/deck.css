@@ -914,6 +914,12 @@ body {
 	height: 124px;
 	margin: 0;
 }
+.reveal .summary .links {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 0.6em;
+}
 .reveal .summary .try {
 	margin: 0;
 	font-family: var(--font-mono);
