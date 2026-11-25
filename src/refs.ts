@@ -22,5 +22,9 @@ export const refs = {
 	vesper2010:`Vesper, C., Butterfill, S., Knoblich, G., & Sebanz, N. (2010). A minimal architecture for joint action. Neural Networks, 23(8–9), 998–1003. ${doi('10.1016/j.neunet.2010.06.002')}`,
 	dimigen2020: `Dimigen, O. (2020). Optimizing the ICA-based removal of ocular EEG artifacts from free viewing experiments. NeuroImage, 207, 116117. ${doi('10.1016/j.neuroimage.2019.116117')}`,
 	ehinger2019: `Ehinger, B. V., & Dimigen, O. (2019). Unfold: an integrated toolbox for overlap correction, non-linear modeling, and regression-based EEG analysis. PeerJ, 7, e7838. ${doi('10.7717/peerj.7838')}`,
-	piontonachini2019: `Pion-Tonachini, L., Kreutz-Delgado, K., & Makeig, S. (2019). ICLabel: An automated electroencephalographic independent component classifier, dataset, and website. NeuroImage, 198, 181–197. ${doi('10.1016/j.neuroimage.2019.05.026')}`
+	balconi2023: `Balconi, M., & Angioletti, L. (2023). Dyadic inter-brain EEG coherence induced by interoceptive hyperscanning. Scientific Reports, 13(1), 4344. ${doi('10.1038/s41598-023-31494-y')}`,
+	liepelt2013: `Liepelt, R., Wenke, D., & Fischer, R. (2013). Effects of feature integration in a hands-crossed version of the Social Simon paradigm. Psychological Research, 77(2), 240–248. ${doi('10.1007/s00426-012-0425-0')}`,
+	liepelt2014: `Liepelt, R. (2014). Interacting hands: The role of attention for the joint Simon effect. Frontiers in Psychology, 5. ${doi('10.3389/fpsyg.2014.01462')}`,
+	egetemeir2011: `Egetemeir, J., Stenneken, P., Koehler, S., Fallgatter, A. J., & Herrmann, M. J. (2011). Exploring the Neural Basis of Real-Life Joint Action: Measuring Brain Activation during Joint Table Setting with Functional Near-Infrared Spectroscopy. Frontiers in Human Neuroscience, 5. ${doi('10.3389/fnhum.2011.00095')}`,
+	piontonachini2019:`Pion-Tonachini, L., Kreutz-Delgado, K., & Makeig, S. (2019). ICLabel: An automated electroencephalographic independent component classifier, dataset, and website. NeuroImage, 198, 181–197. ${doi('10.1016/j.neuroimage.2019.05.026')}`
 };

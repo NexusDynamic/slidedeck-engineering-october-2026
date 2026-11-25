@@ -210,12 +210,19 @@ body {
 	margin-top: 0.5em;
 }
 
-/* the game screenshot is portrait: a narrower column for it */
+/* the game screenshot is portrait: the picture carries the slide, two lines beside it */
 .reveal .split.game .body {
-	grid-template-columns: 1.6fr 1fr;
+	grid-template-columns: 1fr 1fr;
 }
 .reveal .split.game figure img {
-	max-height: 620px;
+	max-height: 640px;
+}
+.reveal .game ul.lead {
+	font-size: 1.15em;
+	line-height: 1.35;
+}
+.reveal .game ul.lead li {
+	margin-bottom: 1em;
 }
 .reveal .split.game figcaption {
 	text-align: center;
@@ -231,13 +238,13 @@ body {
 
 /*
  * Results: the notebook's plots, drawn for a white page, as large as the slide allows.
- * The colours of the block types match the plots.
+ * The colours of the conditions match the plots.
  */
 .reveal {
-	--c-balanced: #2b7bba;
-	--c-blinded: #7b5ea7;
-	--c-hl: #c0392b;
-	--c-hl-low: #e8a09a;
+	--c-matched: #2b7bba;
+	--c-control: #7b5ea7;
+	--c-mismatched: #c0392b;
+	--c-mismatched-low: #e8a09a;
 }
 .reveal .split.result .body {
 	grid-template-columns: 0.8fr 1.2fr;
@@ -286,36 +293,486 @@ body {
 .reveal .result .callout {
 	font-size: 0.75em;
 }
-.reveal .cond {
-	white-space: nowrap;
+/* the result slides: a picture of what is measured on the left, the plot on the right */
+.reveal .result .explain {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
 }
-.reveal .cond::before {
+.reveal .definition {
+	margin: 0;
+	font-size: 0.85em;
+}
+.reveal .definition strong {
+	color: var(--color-accent-strong);
+}
+.reveal .method {
+	margin: 0;
+	font-family: var(--font-mono);
+	font-size: 0.6em;
+	line-height: 1.5;
+	color: var(--color-fg-muted);
+}
+.reveal .method .cite {
+	font-size: 1em;
+}
+.reveal .split.result.neural .body {
+	grid-template-columns: 0.55fr 1.45fr;
+}
+.reveal .footnote {
+	margin: 0;
+	font-family: var(--font-mono);
+	font-size: 0.45em;
+	text-align: center;
+	color: var(--color-fg-subtle);
+}
+.reveal .footnote sup {
+	font-size: 1em;
+	vertical-align: 0;
+	color: var(--color-accent);
+}
+/* two plots side by side, each with a label over it */
+.reveal .pair-plots {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 36px;
+	align-items: start;
+}
+.reveal .plot-label {
+	margin: 0;
+	font-family: var(--font-mono);
+	font-size: 0.55em;
+	text-align: center;
+	color: var(--color-fg-muted);
+}
+.reveal .plot-label span {
+	color: var(--color-accent-strong);
+}
+.reveal .callout em {
+	font-style: normal;
+	color: var(--color-accent-strong);
+}
+
+/* which pairs are compared (components/Comparisons.svelte) */
+.reveal .comparisons {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) auto;
+	gap: 18px;
+	align-items: center;
+	margin: 0;
+}
+.reveal .comparisons.compact {
+	grid-template-columns: 1fr;
+}
+.reveal .comparisons > svg {
+	width: 100%;
+	max-width: 320px;
+}
+.reveal .comparisons .seat {
+	stroke: var(--color-surface);
+	stroke-width: 3;
+}
+.reveal .comparisons .seat.team-A {
+	fill: var(--color-accent);
+}
+.reveal .comparisons .seat.team-B {
+	fill: var(--color-secondary-500);
+}
+.reveal .comparisons .seat.faded {
+	opacity: 0.45;
+}
+.reveal .comparisons .group-label {
+	font-family: var(--font-mono);
+	font-size: 18px;
+	fill: var(--color-fg-subtle);
+}
+.reveal .comparisons .link {
+	fill: none;
+	stroke-width: 3.5;
+	stroke-linecap: round;
+}
+.reveal .comparisons .link.own {
+	stroke: var(--color-accent);
+}
+.reveal .comparisons .link.other-team {
+	stroke: var(--color-fg-muted);
+	stroke-dasharray: 7 6;
+}
+.reveal .comparisons .link.other-group {
+	stroke: var(--color-fg-muted);
+	stroke-dasharray: 0.5 6;
+}
+.reveal .comparisons .link.shifted {
+	stroke: var(--color-fg-subtle);
+	stroke-width: 2;
+	stroke-dasharray: 10 4 2 4;
+}
+.reveal .comparisons .key {
+	margin: 0;
+	font-size: 0.55em;
+	line-height: 1.25;
+}
+.reveal .comparisons .key li {
+	display: grid;
+	grid-template-columns: 44px auto;
+	column-gap: 0.6em;
+	align-items: center;
+	margin-bottom: 0.5em;
+	padding-left: 0;
+}
+.reveal .comparisons .key li::before {
+	content: none;
+}
+.reveal .comparisons .key li svg {
+	grid-row: span 2;
+	width: 40px;
+	height: 10px;
+}
+.reveal .comparisons .key b {
+	font-family: var(--font-mono);
+	font-weight: normal;
+	color: var(--color-fg-strong);
+}
+.reveal .comparisons .key small {
+	grid-column: 2;
+	font-size: 0.9em;
+	color: var(--color-fg-muted);
+}
+
+/* how behavioural coupling is measured (components/TapSignal.svelte) */
+.reveal .tap-signal {
+	margin: 0;
+}
+.reveal .tap-signal svg {
+	width: 100%;
+}
+.reveal .tap-signal text {
+	font-family: var(--font-mono);
+	font-size: 13px;
+	fill: var(--color-fg-muted);
+}
+.reveal .tap-signal .who {
+	font-size: 16px;
+	fill: var(--color-fg-strong);
+}
+.reveal .tap-signal .raw {
+	fill: none;
+	stroke: var(--color-fg-subtle);
+	stroke-width: 1.2;
+	opacity: 0.7;
+}
+.reveal .tap-signal .smooth {
+	fill: none;
+	stroke: var(--color-accent);
+	stroke-width: 2.5;
+}
+.reveal .tap-signal .button circle {
+	fill: var(--color-surface-2);
+	stroke: var(--color-fg-subtle);
+	stroke-width: 1.2;
+}
+.reveal .tap-signal .button text {
+	font-size: 10px;
+	font-weight: bold;
+	fill: var(--color-fg-strong);
+}
+.reveal .tap-signal .zero {
+	stroke: var(--color-line);
+}
+.reveal .tap-signal .bracket {
+	fill: none;
+	stroke: var(--color-accent-strong);
+	stroke-width: 1.5;
+}
+.reveal .tap-signal .r {
+	font-size: 19px;
+	fill: var(--color-accent-strong);
+}
+.reveal .tap-signal .axis {
+	stroke: var(--color-fg-subtle);
+}
+.reveal .tap-signal .axis-label {
+	font-size: 12px;
+	fill: var(--color-fg-subtle);
+}
+
+/* coordination, out there and in the lab: two rows of pictures */
+.reveal .collage .body {
+	gap: 22px;
+}
+.reveal .collage .band-label {
+	margin: 0 0 6px;
+	font-family: var(--font-mono);
+	font-size: 0.55em;
+	color: var(--color-accent);
+}
+.reveal .collage .row {
+	display: flex;
+	gap: 16px;
+	align-items: flex-start;
+}
+.reveal .collage figure {
+	min-width: 0;
+	margin: 0;
+}
+/* a caption no wider than its picture */
+.reveal .collage figcaption {
+	width: 0;
+	min-width: 100%;
+	margin-top: 0.25em;
+	font-size: 0.5em;
+	line-height: 1.3;
+	text-align: center;
+}
+.reveal .collage figcaption::before {
+	content: none;
+}
+.reveal .collage figcaption .cite {
+	font-size: 1em;
+	white-space: normal;
+}
+.reveal .collage .photos {
+	justify-content: center;
+}
+.reveal .collage .photos img {
+	width: auto;
+	height: 300px;
+	object-fit: cover;
+}
+/* widths in proportion to each picture's shape, so the row is one height */
+.reveal .collage .setups figure {
+	flex: var(--ar) 1 0;
+}
+.reveal .collage .setups img {
+	width: 100%;
+	height: 190px;
+	padding: 4px;
+	object-fit: contain;
+	background-color: #fff;
+}
+
+/* why video games: between lab tasks and real life */
+.reveal .games .spectrum {
+	display: grid;
+	grid-template-columns: 1fr 1.4fr 1fr;
+	gap: 28px;
+	align-items: stretch;
+}
+.reveal .games .pole {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.45em;
+	padding: 0.8em 1em 1em;
+	border: 1px solid var(--color-line);
+	border-radius: 0.5rem;
+	background-color: var(--color-surface-2);
+	font-size: 0.8em;
+}
+.reveal .games .pole > b {
+	font-family: 'Mechanical Bold', serif;
+	font-size: 1.35em;
+	font-weight: normal;
+	color: var(--color-fg-strong);
+}
+.reveal .games .pole.middle {
+	border: 2px solid var(--color-accent);
+	box-shadow: 0 0 32px -10px var(--color-glow);
+}
+.reveal .games .pole.middle > b {
+	color: var(--color-accent-strong);
+}
+.reveal .games .thumb {
+	width: 100%;
+	height: 150px;
+	object-fit: cover;
+	border: 2px solid var(--color-accent-soft);
+	border-radius: 0.4rem;
+}
+.reveal .games .thumb.drawing {
+	object-fit: contain;
+	background-color: #fff;
+}
+.reveal .games .middle .thumb {
+	object-position: center 52%;
+}
+.reveal .games .pm {
+	align-self: stretch;
+}
+.reveal .games .pm li {
+	margin-bottom: 0.25em;
+}
+.reveal .games .pm li.plus::before {
+	content: '+';
+	color: var(--color-emerald-500);
+}
+.reveal .games .pm li.minus::before {
+	content: '−';
+	color: var(--color-fg-subtle);
+}
+.reveal .games .chips {
+	margin-top: 0.2em;
+}
+.reveal .games .axis {
+	display: flex;
+	justify-content: space-between;
+	margin: 0.7em 0 0;
+	padding-top: 0.4em;
+	border-top: 2px solid;
+	border-image: linear-gradient(
+			to right,
+			var(--color-fg-subtle),
+			var(--color-accent),
+			var(--color-fg-subtle)
+		)
+		1;
+	font-family: var(--font-mono);
+	font-size: 0.55em;
+	color: var(--color-fg-subtle);
+}
+.reveal .games .axis span:first-child::before {
+	content: '← ';
+}
+.reveal .games .axis span:last-child::after {
+	content: ' →';
+}
+.reveal .games .takeaway {
+	margin: 1em 0 0;
+	font-size: 0.85em;
+	text-align: center;
+	color: var(--color-fg-strong);
+}
+
+/* experiment design: the session in order, the joint task branching into its conditions */
+.reveal .design-n {
+	margin: 0 0 1.4em;
+	font-family: var(--font-mono);
+	font-size: 0.75em;
+	color: var(--color-fg-muted);
+}
+.reveal .design-n .stat {
+	font-size: 1.3em;
+}
+.reveal .design-tree {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	column-gap: 30px;
+	font-size: 0.85em;
+	line-height: 1.3;
+}
+.reveal .design-tree .phase {
+	position: relative;
+	grid-row: 1;
+	padding: 0.7em 1em;
+	border: 1px solid var(--color-line);
+	border-top: 3px solid var(--color-fg-subtle);
+	border-radius: 0.4rem;
+	background-color: var(--color-surface-2);
+}
+.reveal .design-tree .phase + .phase::before {
+	content: '→';
+	position: absolute;
+	top: 50%;
+	left: -24px;
+	transform: translateY(-50%);
+	font-family: var(--font-mono);
+	color: var(--color-fg-subtle);
+}
+.reveal .design-tree .phase.joint {
+	border-color: var(--color-accent);
+	box-shadow: 0 0 28px -10px var(--color-glow);
+}
+.reveal .design-tree .phase b,
+.reveal .cond-card > b {
+	display: block;
+	font-family: 'Mechanical Bold', serif;
+	font-size: 1.2em;
+	font-weight: normal;
+	color: var(--color-fg-strong);
+}
+.reveal .design-tree .phase.joint b {
+	color: var(--color-accent-strong);
+}
+.reveal .design-tree .phase small,
+.reveal .cond-card small {
+	display: block;
+	font-size: 0.8em;
+	color: var(--color-fg-muted);
+}
+.reveal .design-tree .branches {
+	grid-column: 2 / 5;
+	grid-row: 2;
+	width: 100%;
+	height: 56px;
+	overflow: visible;
+}
+.reveal .design-tree .branches path {
+	fill: none;
+	stroke: var(--color-accent);
+	stroke-width: 2;
+}
+.reveal .design-tree .counterbalance {
+	grid-column: 1;
+	grid-row: 3 / 5;
+	align-self: end;
+	margin: 0;
+	font-family: var(--font-mono);
+	font-size: 0.6em;
+	color: var(--color-fg-subtle);
+}
+.reveal .cond-card {
+	position: relative;
+	grid-row: 3;
+	overflow: hidden;
+	padding: 1em 1em 0.8em;
+	border: 1px solid var(--color-line);
+	border-radius: 0.4rem;
+	background-color: var(--color-surface-2);
+	text-align: center;
+}
+/* a bar in the condition's colour, as in the plots; mismatched is two teams, two colours */
+.reveal .cond-card::before {
 	content: '';
+	position: absolute;
+	inset: 0 0 auto;
+	height: 6px;
+	background: var(--bar);
+}
+.reveal .cond-card small b {
+	color: var(--color-fg-strong);
+}
+.reveal .cond-card.control {
+	--bar: var(--c-control);
+	grid-column: 2;
+}
+.reveal .cond-card.matched {
+	--bar: var(--c-matched);
+	grid-column: 3;
+}
+.reveal .cond-card.mismatched {
+	--bar: linear-gradient(to right, var(--c-mismatched) 50%, var(--c-mismatched-low) 50%);
+	grid-column: 4;
+}
+.reveal .design-tree .skill-match {
+	grid-column: 3 / 5;
+	grid-row: 4;
+	height: 18px;
+	margin: 10px 0 0;
+	border: 2px solid var(--color-fg-subtle);
+	border-top: 0;
+	border-radius: 0 0 0.5rem 0.5rem;
+	text-align: center;
+}
+.reveal .design-tree .skill-match span {
 	display: inline-block;
-	width: 0.6em;
-	height: 0.6em;
-	margin-right: 0.35em;
-	border-radius: 50%;
-	background-color: var(--c);
-	vertical-align: 0.05em;
-}
-.reveal .cond.balanced {
-	--c: var(--c-balanced);
-}
-.reveal .cond.blinded {
-	--c: var(--c-blinded);
-}
-.reveal .cond.hl {
-	--c: var(--c-hl);
-}
-.reveal .cond.hl-low {
-	--c: var(--c-hl-low);
-}
-/* skill-sorted is two teams: both colours */
-.reveal .conditions .cond.hl::before {
-	width: 1.2em;
-	border-radius: 0.3em;
-	background: linear-gradient(to right, var(--c-hl) 50%, var(--c-hl-low) 50%);
+	padding: 0 0.7em;
+	transform: translateY(6px);
+	background-color: var(--color-surface);
+	font-family: var(--font-mono);
+	font-size: 0.6em;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+	color: var(--color-fg-muted);
 }
 
 /* research question: the three levels */
@@ -339,66 +796,16 @@ body {
 	margin-block: 0.3em;
 }
 
-/* session design: the phases in order, joint blocks highlighted */
-.reveal .timeline {
-	display: grid;
-	grid-template-columns: repeat(5, 1fr);
-	gap: 30px;
-	margin: 0 0 1.2em;
-	font-size: 0.72em;
-	line-height: 1.3;
-	list-style: none;
-}
-.reveal .timeline li {
-	margin: 0;
-	padding: 0.55em 0.8em;
-	border: 1px solid var(--color-line);
-	border-top: 3px solid var(--color-fg-subtle);
-	border-radius: 0.4rem;
-	background-color: var(--color-surface-2);
-}
-.reveal .timeline li::before {
-	content: none;
-}
-.reveal .timeline li + li::after {
-	content: '→';
-	position: absolute;
-	top: 50%;
-	left: -24px;
-	transform: translateY(-50%);
-	font-family: var(--font-mono);
-	color: var(--color-fg-subtle);
-}
-.reveal .timeline li.joint {
-	border-top-color: var(--color-accent);
-}
-.reveal .timeline b {
-	display: block;
-	font-family: var(--font-mono);
-	color: var(--color-fg-strong);
-}
-.reveal .timeline small {
-	color: var(--color-fg-muted);
-}
 .reveal p small {
 	color: var(--color-fg-muted);
 	font-size: 0.5em;
 }
-.reveal .design-grid {
-	display: grid;
-	grid-template-columns: 1.4fr 1fr;
-	gap: 56px;
-	align-items: center;
-}
-
-/* tables: conditions, comparison levels */
-.reveal table.conditions,
+/* table: comparison levels (backup) */
 .reveal table.levels {
 	border-collapse: collapse;
 	font-size: 0.75em;
 	line-height: 1.3;
 }
-.reveal table.conditions th,
 .reveal table.levels thead th {
 	padding: 0 0.9em 0.4em;
 	font-family: var(--font-mono);
@@ -406,15 +813,6 @@ body {
 	font-weight: normal;
 	text-align: left;
 	color: var(--color-fg-subtle);
-}
-.reveal table.conditions td {
-	padding: 0.55em 0.9em;
-	white-space: nowrap;
-	border-top: 1px solid var(--color-line);
-}
-.reveal table.conditions td:first-child {
-	font-family: var(--font-mono);
-	color: var(--color-fg-strong);
 }
 .reveal table.levels {
 	margin: 0 auto 1em;
@@ -471,24 +869,56 @@ body {
 .reveal .summary .card li {
 	margin-bottom: 0.5em;
 }
+.reveal .summary .card > p {
+	color: var(--color-fg);
+}
+.reveal .summary .card li small {
+	display: block;
+	font-size: 0.75em;
+	color: var(--color-fg-muted);
+}
+.reveal .levels-summary {
+	display: grid;
+	grid-template-columns: max-content 1fr;
+	gap: 0.35em 1em;
+	margin: 0.6em 0 0;
+}
+.reveal .levels-summary dt {
+	font-family: var(--font-mono);
+	font-size: 0.85em;
+	color: var(--color-accent-strong);
+}
+.reveal .levels-summary dd {
+	margin: 0;
+}
+/* links: the game, the paper and these slides, each QR code with its link to the right, evenly spaced */
 .reveal .summary .play {
 	display: flex;
+	justify-content: space-between;
 	align-items: center;
 	gap: 28px;
 	margin-top: 1em;
+}
+.reveal .summary .link-block {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+}
+.reveal .summary .try a {
+	white-space: nowrap;
 }
 .reveal .summary .qr {
 	position: static;
 }
 .reveal .summary .qr svg {
-	width: 140px;
-	height: 140px;
+	width: 124px;
+	height: 124px;
 	margin: 0;
 }
 .reveal .summary .try {
 	margin: 0;
 	font-family: var(--font-mono);
-	font-size: 0.65em;
+	font-size: 0.6em;
 }
 
 .reveal .streams {
@@ -677,13 +1107,13 @@ body {
 	columns: 2;
 	column-gap: 2.2em;
 	padding-top: 0.6em;
-	font-size: 0.5em;
-	line-height: 1.35;
+	font-size: 0.45em;
+	line-height: 1.3;
 }
 .reveal .references li {
 	display: flex;
 	gap: 0.7em;
-	margin: 0 0 0.55em;
+	margin: 0 0 0.45em;
 	padding: 0;
 	break-inside: avoid;
 }

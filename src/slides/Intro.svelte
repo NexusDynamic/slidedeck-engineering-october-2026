@@ -2,24 +2,66 @@
     import Callout from "$site/components/Callout.svelte";
     import lab from "$siteStatic/_assets/images/_vault/rise-together/lab-setup.jpg";
     import synchrony from "$siteStatic/_assets/images/_vault/rise-together/ps760883.f1.webp";
+    import game from "$siteStatic/_assets/images/_vault/rise-together/rise-together.webp";
     import Slide from "../components/Slide.svelte";
     import AuLogo from "../components/AuLogo.svelte";
     import Cite from "../components/Cite.svelte";
     import { talk } from "../meta";
     import { refs } from "../refs";
 
-    // what makes brains line up, from the least to the most interesting
-    const layers = [
+    const img = (name: string) => `${import.meta.env.BASE_URL}images/${name}`;
+
+    // coordination out in the world (Unsplash; credit in the caption)
+    const photos = [
         {
-            name: "shared stimulus",
-            sub: "same room, same screen, same trial timing",
+            src: "photos/formation.jpg",
+            alt: "Eleven jets flying in tight formation, trailing white smoke",
+            credit: "C. Holmes",
         },
         {
-            name: "shared action",
-            sub: "pressing together, steering the same paddle",
+            src: "photos/rowing.jpg",
+            alt: "A rowing four from above, the oars moving in unison",
+            credit: "P. Mahmoudi",
         },
-        { name: "shared attention", sub: "watching the same ball" },
-        { name: "team membership?", sub: 'being on the same side: "us"' },
+        {
+            src: "photos/footvolley.jpg",
+            alt: "A footvolley player flipping upside down to kick the ball over the net",
+            credit: "C. Weingarten",
+        },
+    ];
+
+    // and brought into the lab; `ar` is the image's aspect ratio, so the row lines up
+    const setups = [
+        {
+            src: "setups/liepelt2013.png",
+            ar: 308 / 438,
+            ref: refs.liepelt2013,
+            alt: "Two people side by side, arms crossed, each pressing a button for a shape on a shared screen",
+        },
+        {
+            src: "setups/liepelt2014.jpg",
+            ar: 850 / 701,
+            ref: refs.liepelt2014,
+            alt: "Two people at one monitor, each with a hand on the screen or on the knee",
+        },
+        {
+            src: "setups/egetemeir2011.png",
+            ar: 636 / 401,
+            ref: refs.egetemeir2011,
+            alt: "Top view of a participant and an experimenter setting a table together, with fNIRS",
+        },
+        {
+            src: "setups/balconi2023.png",
+            ar: 500 / 310,
+            ref: refs.balconi2023,
+            alt: "Two people in EEG caps from above, hands on a table next to each other",
+        },
+        {
+            src: "setups/dikker2017.jpg",
+            ar: 1200 / 567,
+            ref: refs.dikker2017,
+            alt: "Drawing of a classroom: a teacher and students wearing portable EEG headsets",
+        },
     ];
 </script>
 
@@ -54,31 +96,86 @@
 </section>
 
 <Slide
-    title="Coordination between people"
-    prompt="cat background.md"
+    title="We coordinate with others all the time"
+    prompt="ls coordination/"
+    class="collage"
+>
+    <div class="band">
+        <p class="band-label">// in the lab</p>
+        <div class="row setups">
+            {#each setups as s (s.src)}
+                <figure style:--ar={s.ar}>
+                    <img src={img(s.src)} alt={s.alt} />
+                    <figcaption><Cite text={s.ref} /></figcaption>
+                </figure>
+            {/each}
+        </div>
+    </div>
+    <div class="band fragment">
+        <p class="band-label">// in real life</p>
+        <div class="row photos">
+            {#each photos as p (p.src)}
+                <figure>
+                    <img src={img(p.src)} alt={p.alt} />
+                    <figcaption>{p.credit} / Unsplash</figcaption>
+                </figure>
+            {/each}
+        </div>
+    </div>
+    {#snippet notes()}
+        <p>
+            In the lab, coordination has been studied in tasks we can control
+            and measure: two people sharing a Simon task, setting a table
+            together, sitting side by side in EEG caps; and, less often, whole
+            groups, like Dikker's classroom.
+        </p>
+        <p>
+            [next] But out there, coordination is a natural part of our lives:
+            flying in formation, rowing, passing a ball. People time their
+            actions to each other to reach a shared goal.
+        </p>
+        <p>
+            The further a task is from real life, the easier it is to measure,
+            and the less it looks like the coordination we want to understand.
+        </p>
+    {/snippet}
+</Slide>
+
+<Slide
+    title="Coordination gives rise to synchrony"
+    prompt="grep -r synchrony"
     class="split paper-right"
 >
-    <ul class="compact">
-        <li>
-            In joint action, people coordinate their actions in time to reach a
-            shared goal <Cite text={refs.vesper2010} />.
-        </li>
-        <li>
-            Hyperscanning records several people at once; inter-brain synchrony
-            is studied as a neural correlate of interaction
-            <Cite text={[refs.wheatley2024, refs.schilbach2025]} />.
-        </li>
-        <li>
-            Cooperation goes with higher inter-brain synchrony than working
-            alone or resting, mostly in fNIRS
-            <Cite text={[refs.cui2012, refs.czeszumski2022]} />. Direct
-            cooperation vs competition contrasts are fewer, and mixed.
-        </li>
-        <li>
-            Most of this is in dyads. Groups of three or more are rare
-            <Cite text={[refs.dikker2017, refs.reinero2021, refs.zamm2026]} />.
-        </li>
-    </ul>
+    <div>
+        <ul class="compact">
+            <li>
+                When people coordinate, their actions fall into step, and
+                behaviour shows it readily <Cite text={refs.vesper2010} />.
+            </li>
+            <li>
+                Their brains do too: inter-brain synchrony, higher in
+                cooperation <Cite
+                    text={[
+                        refs.cui2012,
+                        refs.czeszumski2022,
+                        refs.schilbach2025,
+                    ]}
+                />.
+            </li>
+            <li>
+                Hyperscanning records several brains at once, but nearly all of
+                it is in pairs; groups are rare <Cite
+                    text={[refs.dikker2017, refs.reinero2021, refs.zamm2026]}
+                />.
+            </li>
+        </ul>
+        <Callout label="QUESTION">
+            <p>
+                How can we measure inter-brain synchrony in <em>groups</em>
+                coordinating in <em>real-world</em> tasks?
+            </p>
+        </Callout>
+    </div>
     <figure class="paper">
         <img
             src={synchrony}
@@ -88,79 +185,92 @@
     </figure>
     {#snippet notes()}
         <p>
-            Cui et al. 2012 ~ along the same lines: two people pressing buttons
-            side by side, trying to press together or faster than the other.
-            (fNIRS, wavelet) Coherence rose in cooperation, not competition.
-            There's an fNIRS meta-analysis (13 studies) that mostly compares
-            cooperation with individual or rest conditions, not with
-            competition.
+            Synchrony arises naturally when people coordinate: we see it in
+            movement and timing, and it is easy to measure in behaviour.
         </p>
         <p>
-            There are some studies with groups: classroom, portable EEG (Dikker
-            2017) Teams of four; synchrony predicted performance, self-reported
-            identification did not (Reinero 2021), and the Tapping Orchestra
-            study with up to ten people (Anna and Simon preprint).
+            Hyperscanning, recording several people at once, shows it in the
+            brain too (Wheatley 2024 and Schilbach &amp; Redcay 2025 for
+            reviews). Cooperation goes with higher synchrony than working alone,
+            mostly in fNIRS (Cui 2012; meta-analysis Czeszumski 2022).
         </p>
         <p>
-            We can use recorded brain data to analyse neural synchrony, figure
-            shows interactive synchrony and similarity as two distinct things.
-            Left side of, figure: no interaction, only the same input, and still
-            similar brain responses. Holroyd's (critical) example: two people
-            listening to the same radio station in different rooms.
+            The figure: similarity (left, same input, no interaction) is not the
+            same as interactive synchrony (right). Shared stimuli and shared
+            actions produce synchrony on their own (Hamilton 2021, Holroyd
+            2022): something we come back to at the end.
+        </p>
+        <p>
+            Most of this is in dyads. Groups: Dikker's classroom (portable EEG),
+            Reinero's teams of four, and Anna and Simon's Tapping Orchestra with
+            up to ten people. So: how do we measure groups, coordinating in
+            something that looks like the real world?
         </p>
     {/snippet}
 </Slide>
 
-<Slide
-    title="But synchrony is easy to get"
-    prompt="grep -c confound"
-    class="split"
->
-    <div>
-        <ul class="compact">
-            <li>
-                Shared stimuli and shared actions produce synchrony without any
-                interaction <Cite
-                    text={[refs.hamilton2021, refs.holroyd2022]}
-                />.
-            </li>
-            <li>
-                Teams, as in sport: cooperate within, compete between, at the
-                same time.
-            </li>
-            <li>
-                Arbitrary groups are enough for in-group preference
-                <Cite text={refs.tajfel1971} />, so teams can be reassigned.
-            </li>
-        </ul>
-        <Callout label="RESEARCH QUESTION">
-            <p>
-                Does team membership modulate coupling between people, beyond
-                what they share in stimulus, environment and action?
-            </p>
-        </Callout>
+<Slide title="Why video games?" prompt="cat why-games.md" class="games">
+    <div class="spectrum">
+        <div class="pole">
+            <img
+                src={img("setups/liepelt2013.png")}
+                alt=""
+                class="thumb drawing"
+            />
+            <b>lab tasks</b>
+            <ul class="pm">
+                <li class="plus">controlled, time-locked</li>
+                <li class="minus">artificial, scripted</li>
+                <li class="minus">mostly pairs</li>
+            </ul>
+        </div>
+        <div class="pole middle">
+            <img src={game} alt="" class="thumb" />
+            <b>video games</b>
+            <ul class="chips">
+                <li>real-time, unscripted</li>
+                <li>cooperate &amp; compete at once</li>
+                <li>same screen for everyone</li>
+                <li>every action logged &amp; time-stamped</li>
+                <li>teams &amp; skill can be set</li>
+                <li>engaging, no training</li>
+            </ul>
+        </div>
+        <div class="pole">
+            <img src={img("photos/rowing.jpg")} alt="" class="thumb" />
+            <b>real life</b>
+            <ul class="pm">
+                <li class="plus">natural, unscripted</li>
+                <li class="plus">groups</li>
+                <li class="minus">hard to control or time-lock</li>
+            </ul>
+        </div>
     </div>
-    <ol class="layers">
-        {#each layers.toReversed() as layer (layer.name)}
-            <li>{layer.name}<small>{layer.sub}</small></li>
-        {/each}
-    </ol>
+    <p class="axis"><span>controlled</span><span>natural</span></p>
+    <p class="takeaway">
+        The same game runs on tablets, phones and in a browser: in the lab, and
+        out of it.
+    </p>
     {#snippet notes()}
         <p>
-            Intuitively, there is something that feels different about two
-            people doing the same thing separately, or jointly, but it's hard to
-            get at with the tools we currently have.
+            Video games are a natural paradigm for coordination and competition
+            between groups, and they can still be controlled.
         </p>
         <p>
-            My expectation is that most of the coupling is explained by the
-            shared aspects of what a participant is doing. My experiment is
-            designed to try and account for and be able to measure the lower
-            layers, and investigate what's remaining.
+            Players interact in real time with nothing scripted, like in the
+            real world. But every player sees the same screen, every input is
+            logged with its time, and we decide who is on which team, how
+            skilled the teams are, and what players know about each other.
         </p>
         <p>
-            Coupling is looked at on three levels: behaviour (button presses),
-            ratings (identification, closeness) and EEG (inter-subject
-            correlation).
+            Teams give cooperation within and competition between at the same
+            time, as in team sports. Multi-brain gaming has been done with
+            neurofeedback (Susnoschi Luca 2021).
         </p>
+        <p>
+            And because the game is just an app, the same paradigm can go out of
+            the lab with portable EEG.
+        </p>
+        <p>[TODO: a reference for games as a naturalistic paradigm?]</p>
     {/snippet}
 </Slide>
