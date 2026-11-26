@@ -1246,9 +1246,14 @@ html:not(.reveal-print) .reveal .split.result.beh .body:has(> .plot.fragment:not
 	height: 104px;
 }
 
-/* thank you */
+/* thank you
+   2 column, but the figure should take up less space
+*/
 .reveal .thanks .body {
 	align-items: flex-start;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
 }
 .reveal .thanks dl {
 	display: grid;
@@ -1256,7 +1261,7 @@ html:not(.reveal-print) .reveal .split.result.beh .body:has(> .plot.fragment:not
 	gap: 0.9em 1.4em;
 	align-items: baseline;
 	margin: 0;
-	font-size: 1.05em;
+	font-size: 1em;
 }
 .reveal .thanks dt {
 	font-size: 1.1em;
@@ -1265,6 +1270,11 @@ html:not(.reveal-print) .reveal .split.result.beh .body:has(> .plot.fragment:not
 .reveal .thanks dd {
 	margin: 0;
 }
+
+.reveal .thanks figure {
+    flex: 0 0 40%;
+}
+
 
 /*
  * The thread of the talk: what is needed → the design choice → what has to be built.
