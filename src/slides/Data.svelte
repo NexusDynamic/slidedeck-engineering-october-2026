@@ -46,7 +46,7 @@
             tests; <sup>n.s.</sup> = not significant
         </p>
         <figcaption>
-            dots: one team in one condition · black: mean ± SE over 8 groups ·
+            dots: one team in one condition · black: mean ± SE over 9 groups ·
             inset: own team by condition
         </figcaption>
     </figure>
@@ -170,7 +170,7 @@
             p &lt; .05 · <sup>n.s.</sup> not significant · permutation tests
         </p>
         <figcaption>
-            dots: one team in one condition · black: mean ± SE over 8 groups ·
+            dots: one team in one condition · black: mean ± SE over 9 groups ·
             inset: own team by condition · right: forward projection of C1
         </figcaption>
     </figure>
@@ -186,8 +186,8 @@
         </p>
         <p>
             Chance level: surrogate data, made by circularly shifting one
-            person's data in time (by at least 10 s), which keeps the signal
-            but breaks any alignment between the two people.
+            person's data in time (by at least 10 s), which keeps the signal but
+            breaks any alignment between the two people.
         </p>
         <p>
             Own &gt; other team (p &lt; .0001); other team &gt; other group (p =

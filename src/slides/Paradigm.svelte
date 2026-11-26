@@ -40,8 +40,8 @@
     <div>
         <ul class="lead">
             <li>
-                Each team of three lifts <strong>one</strong> paddle; full speed
-                needs every player.
+                Each team of three lifts <strong>one</strong> paddle; full speed needs
+                every player.
             </li>
             <li>Both teams play at once. The team that gets further wins.</li>
             <li class="built">
@@ -49,7 +49,7 @@
                 Streaming Layer via liblsl.dart <Cite text={refs.ring2026} />.
             </li>
         </ul>
-        <Callout label="QUESTION">
+        <Callout label="RESEARCH QUESTION">
             <p>
                 Do people on the same team show enhanced <em>neural</em> and
                 <em>behavioural</em> coordination?
@@ -90,8 +90,8 @@
             It's one Flutter codebase for tablets, phones, desktop and browser.
             To line game events up with the EEG I wrote liblsl.dart, which
             brings Lab Streaming Layer to Dart and Flutter; it's published in
-            the Journal of Open Source Software. So the same game can be used
-            in the lab, and out of it with portable EEG.
+            the Journal of Open Source Software. So the same game can be used in
+            the lab, and out of it with portable EEG.
         </p>
         <p>
             The question: do people on the same team show enhanced neural and
@@ -102,7 +102,7 @@
 
 <Slide title="Experiment design" prompt="cat design.md" class="design">
     <p class="design-n">
-        <span class="stat">N = 45</span> · 8 groups of 6 (3 excluded) · EEG · EMG
+        <span class="stat">N = 51</span> · 9 groups of 6 (3 excluded) · EEG · EMG
         · IMU
     </p>
     <div class="design-tree">
@@ -128,15 +128,15 @@
                 vector-effect="non-scaling-stroke"
             />
         </svg>
-        <p class="counterbalance">
-            task order counterbalanced across groups
-        </p>
+        <p class="counterbalance">task order counterbalanced across groups</p>
         {#each conditions as c (c.id)}
             <div class="cond-card {c.id}" class:main={!c.role}>
                 {#if c.role}<span class="role">{c.role}</span>{/if}
                 <b>{c.name}</b>
                 <small>{@html c.sub}</small>
-                {#if c.tests}<small class="tests">controls for: {c.tests}</small>{/if}
+                {#if c.tests}<small class="tests">
+                        controls for: {c.tests}
+                    </small>{/if}
             </div>
         {/each}
         <p class="skill-match"><span>between-team skill match</span></p>
@@ -153,9 +153,8 @@
                 team. This is the one the question is about.
             </li>
             <li>
-                Blinded (control): also rank-balanced teams, but players
-                don't know who their teammates are. Controls for knowing your
-                team.
+                Blinded (control): also rank-balanced teams, but players don't
+                know who their teammates are. Controls for knowing your team.
             </li>
             <li>
                 Skill / rank (control): top 3 vs bottom 3; the high team won
@@ -169,9 +168,9 @@
         </p>
         <p>
             Recorded from everyone: EEG, EMG and IMU; every button press and the
-            game state. Team identification (SISI) before each task and
-            after each trial. Every device is timestamped with LSL and aligned
-            to each EEG recording; screen latencies checked with a photodiode.
+            game state. Team identification (SISI) before each task and after
+            each trial. Every device is timestamped with LSL and aligned to each
+            EEG recording; screen latencies checked with a photodiode.
         </p>
     {/snippet}
 </Slide>

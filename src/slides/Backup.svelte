@@ -54,8 +54,10 @@
     <Callout label="TIMING">
         <p>
             Events from every device are timestamped with Lab Streaming Layer
-            <Cite text={refs.kothe2025} /> via liblsl.dart <Cite text={refs.ring2026} /> and aligned to each EEG
-            recording; screen updates are measured with a photodiode.
+            <Cite text={refs.kothe2025} /> via liblsl.dart <Cite
+                text={refs.ring2026}
+            /> and aligned to each EEG recording; screen updates are measured with
+            a photodiode.
         </p>
     </Callout>
     {#snippet notes()}
@@ -112,13 +114,13 @@
     </figure>
     <ul class="compact">
         <li>
-            For 43 of 45 people, the ICA component that best matches C1 (|r|
-            ≈ 0.75–0.97) is labelled <strong>brain</strong>, not eye or muscle.
+            For 43 of 45 people, the ICA component that best matches C1 (|r| ≈
+            0.75–0.97) is labelled <strong>brain</strong>, not eye or muscle.
         </li>
         <li>
-            But C1 responds strongly to saccades during play, and teammates'
-            eye movements are themselves more correlated than opponents' (EOG
-            ISC, own &gt; other team).
+            But C1 responds strongly to saccades during play, and teammates' eye
+            movements are themselves more correlated than opponents' (EOG ISC,
+            own &gt; other team).
         </li>
     </ul>
     {#snippet notes()}
@@ -132,9 +134,9 @@
         </p>
         <p>
             So C1 looks like brain activity rather than an ocular artefact, but
-            it is visually driven, and where people look is shared more within
-            a team. Shared gaze is one of the things the comparison levels do
-            not yet separate from team membership.
+            it is visually driven, and where people look is shared more within a
+            team. Shared gaze is one of the things the comparison levels do not
+            yet separate from team membership.
         </p>
         <p>
             [Preprocessing: see the bubble-locked EEG slide notes; 1–40 Hz, bad
@@ -197,7 +199,7 @@
                 per session.
             </li>
             <li>
-                Similar waveform and latency in all 8 groups: the game's events
+                Similar waveform and latency in all 9 groups: the game's events
                 are aligned to the EEG consistently across sessions.
             </li>
         </ul>
@@ -330,7 +332,7 @@
         />
         <figcaption>
             grey: each electrode · black: global field power · maps at the GFP
-            peaks · 45 participants, 8 groups
+            peaks · 51 participants, 9 groups
         </figcaption>
     </figure>
     {#snippet notes()}
@@ -352,7 +354,7 @@
         <p>
             (photodiode; 3 people without a photodiode onset: estimated from the
             tablet log; where both exist, the estimate is off by SD 3.7 ms, at
-            most 14 ms). 45 participants in 8 groups.
+            most 14 ms). 51 participants in 9 groups.
         </p>
         <p>
             Preprocessing: known bad channels marked (lab notes and a
