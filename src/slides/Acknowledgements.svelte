@@ -41,3 +41,23 @@
 		{/each}
 	</div>
 </Slide>
+
+<Slide title="Thank you" prompt="echo thanks" class="thanks">
+	<dl>
+		<dt>You</dt>
+		<dd>for listening</dd>
+		<dt>Center for Ear-EEG</dt>
+		<dd>for hosting the workshop, and for a space to run my experiment</dd>
+		<dt>Anna &amp; Simon</dt>
+		<dd>for organising the event</dd>
+	</dl>
+	{#snippet notes()}
+		<p>Thank you all for listening.</p>
+		<p>
+			Thanks to the Center for Ear-EEG for hosting this workshop, and for
+			providing a space for my experiment.
+		</p>
+		<p>And thanks to Anna and Simon for organising the event.</p>
+		<p>[then go to the references slide and leave it up for questions]</p>
+	{/snippet}
+</Slide>

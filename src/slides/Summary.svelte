@@ -1,12 +1,8 @@
 <script lang="ts">
     import Slide from "../components/Slide.svelte";
-    import Qr from "../components/Qr.svelte";
+    import Links from "../components/Links.svelte";
     import Cite from "../components/Cite.svelte";
-    import { talk } from "../meta";
     import { refs } from "../refs";
-
-    // a link as it's printed: no scheme, no trailing slash
-    const short = (url: string) => url.replace(/^https:\/\/|\/$/g, "");
 </script>
 
 <Slide
@@ -47,32 +43,7 @@
             </ul>
         </div>
     </div>
-    <div class="play">
-        <div class="link-block">
-            <Qr value={talk.gameUrl} />
-            <p class="try">
-                Try the game:<br /><a href={talk.gameUrl}>
-                    {short(talk.gameUrl)}
-                </a>
-            </p>
-        </div>
-        <div class="link-block">
-            <Qr value={talk.paperUrl} />
-            <p class="try">
-                liblsl.dart (JOSS):<br /><a href={talk.paperDoi}>
-                    {short(talk.paperDoi)}
-                </a>
-            </p>
-        </div>
-        <div class="link-block">
-            <Qr value={talk.slidesUrl} />
-            <p class="try">
-                These slides:<br /><a href={talk.slidesUrl}>
-                    {short(talk.slidesUrl)}
-                </a>
-            </p>
-        </div>
-    </div>
+    <Links />
     {#snippet notes()}
         <p>
             So: a naturalistic video-game task in which we can measure EEG from

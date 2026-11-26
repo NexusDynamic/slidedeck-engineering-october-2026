@@ -1,7 +1,5 @@
 <script lang="ts">
-    import Callout from "$site/components/Callout.svelte";
     import lab from "$siteStatic/_assets/images/_vault/rise-together/lab-setup.jpg";
-    import synchrony from "$siteStatic/_assets/images/_vault/rise-together/ps760883.f1.webp";
     import game from "$siteStatic/_assets/images/_vault/rise-together/rise-together.webp";
     import Slide from "../components/Slide.svelte";
     import AuLogo from "../components/AuLogo.svelte";
@@ -10,6 +8,22 @@
     import { refs } from "../refs";
 
     const img = (name: string) => `${import.meta.env.BASE_URL}images/${name}`;
+
+    // synchrony: two people's actions (A on time, B a little off) line up in time
+    const beats = [52, 128, 196, 262, 318, 386];
+    const jitter = [6, -4, 8, 3, -6, 5];
+
+    // hyperscanning: three people's EEG on one time axis, similar but not identical
+    const waves = [0, 0.7, 1.4].map((phase) =>
+        Array.from({ length: 97 }, (_, i) => {
+            const x = 30 + i * 4;
+            const y =
+                -9 * Math.sin(x / 22) -
+                4 * Math.sin(x / 7 + phase) -
+                2 * Math.sin(x / 3.1 + 2 * phase);
+            return `${i ? "L" : "M"}${x} ${y.toFixed(1)}`;
+        }).join(""),
+    );
 
     // coordination out in the world (Unsplash; credit in the caption)
     const photos = [
@@ -93,6 +107,17 @@
         />
         <figcaption>the group EEG hyperscanning lab</figcaption>
     </figure>
+    <aside class="notes">
+        <p>
+            This talk is about my PhD project: a collaboration between cognitive
+            science and engineering.
+        </p>
+        <p>
+            The question comes from cognitive science, how people coordinate in
+            groups, and answering it meant building things: a game, and the
+            timing to line it up with everyone's EEG.
+        </p>
+    </aside>
 </section>
 
 <Slide
@@ -124,92 +149,90 @@
     </div>
     {#snippet notes()}
         <p>
-            In the lab, coordination has been studied in tasks we can control
-            and measure: two people sharing a Simon task, setting a table
-            together, sitting side by side in EEG caps; and, less often, whole
-            groups, like Dikker's classroom.
+            Many tasks involve coordination: from intentional, lab-based
+            experiments...
         </p>
         <p>
-            [next] But out there, coordination is a natural part of our lives:
-            flying in formation, rowing, passing a ball. People time their
-            actions to each other to reach a shared goal.
+            [next] ...to real life, where we coordinate for our profession and
+            for recreation.
         </p>
-        <p>
-            The further a task is from real life, the easier it is to measure,
-            and the less it looks like the coordination we want to understand.
-        </p>
+        <p>[keep this one fast]</p>
     {/snippet}
 </Slide>
 
 <Slide
     title="Coordination gives rise to synchrony"
     prompt="grep -r synchrony"
-    class="split paper-right"
+    class="defs"
 >
-    <div>
-        <ul class="compact">
-            <li>
-                When people coordinate, their actions fall into step, and
-                behaviour shows it readily <Cite text={refs.vesper2010} />.
-            </li>
-            <li>
-                Their brains do too: inter-brain synchrony, higher in
-                cooperation <Cite
-                    text={[
-                        refs.cui2012,
-                        refs.czeszumski2022,
-                        refs.schilbach2025,
-                    ]}
-                />.
-            </li>
-            <li>
-                Hyperscanning records several brains at once, but nearly all of
-                it is in pairs; groups are rare <Cite
-                    text={[refs.dikker2017, refs.reinero2021, refs.zamm2026]}
-                />.
-            </li>
-        </ul>
-        <Callout label="QUESTION">
+    <div class="def-cards">
+        <div class="def-card">
+            <p class="term"><strong>synchrony</strong></p>
             <p>
-                How can we measure inter-brain synchrony in <em>groups</em>
-                coordinating in <em>real-world</em> tasks?
+                the alignment of people's actions in time; it arises naturally
+                when people coordinate <Cite text={refs.vesper2010} />
             </p>
-        </Callout>
+            <svg viewBox="0 0 420 120" role="img" aria-label="Two people's actions lining up in time">
+                {#each [30, 86] as y, k (y)}
+                    <text class="who" x="0" y={y + 5}>{k ? "B" : "A"}</text>
+                    <line class="track" x1="28" y1={y} x2="420" y2={y} />
+                    {#each beats as t, i (i)}
+                        <rect class="beat" x={t + (k ? jitter[i] : 0)} y={y - 14} width="18" height="28" rx="4" />
+                    {/each}
+                {/each}
+                {#each beats as t, i (i)}
+                    <line class="align" x1={t + 9} y1="8" x2={t + 9} y2="112" />
+                {/each}
+            </svg>
+        </div>
+        <div class="def-card">
+            <p class="term"><strong>hyperscanning</strong></p>
+            <p>
+                the simultaneous measurement of brain activity from several
+                people: their brains align too <Cite
+                    text={[refs.cui2012, refs.czeszumski2022, refs.schilbach2025]}
+                />
+            </p>
+            <svg viewBox="0 0 420 120" role="img" aria-label="Three people's EEG recorded at once on one time axis">
+                {#each waves as d, k (k)}
+                    <circle class="head" cx="12" cy={20 + k * 40} r="11" />
+                    <path class="wave" {d} transform="translate(0 {20 + k * 40})" />
+                {/each}
+                <line class="now" x1="250" y1="2" x2="250" y2="118" />
+            </svg>
+        </div>
     </div>
-    <figure class="paper">
-        <img
-            src={synchrony}
-            alt="Left: three people behind dividers watching the same screen show similar brain responses. Right: two people interacting face to face show real-time neural alignment."
-        />
-        <figcaption>Schilbach &amp; Redcay, 2025</figcaption>
-    </figure>
+    <p class="defs-foot">
+        Nearly all of it is in pairs; groups are rare <Cite
+            text={[refs.dikker2017, refs.reinero2021, refs.zamm2026]}
+        />.
+    </p>
     {#snippet notes()}
         <p>
-            Synchrony arises naturally when people coordinate: we see it in
-            movement and timing, and it is easy to measure in behaviour.
+            That coordination gives rise to synchrony. Synchrony is the
+            alignment of people's actions in time, and it arises naturally when
+            people coordinate: we fall into step, we time our movements to each
+            other. In behaviour it's easy to see and to measure.
         </p>
         <p>
-            Hyperscanning, recording several people at once, shows it in the
-            brain too (Wheatley 2024 and Schilbach &amp; Redcay 2025 for
-            reviews). Cooperation goes with higher synchrony than working alone,
-            mostly in fNIRS (Cui 2012; meta-analysis Czeszumski 2022).
+            We also see this in the brain, which we've been able to record due
+            to the development of hyperscanning: the simultaneous measurement of
+            brain activity from several people at once. When people cooperate,
+            their brain activity is more aligned than when they work alone.
         </p>
         <p>
-            The figure: similarity (left, same input, no interaction) is not the
-            same as interactive synchrony (right). Shared stimuli and shared
-            actions produce synchrony on their own (Hamilton 2021, Holroyd
-            2022): something we come back to at the end.
-        </p>
-        <p>
-            Most of this is in dyads. Groups: Dikker's classroom (portable EEG),
-            Reinero's teams of four, and Anna and Simon's Tapping Orchestra with
-            up to ten people. So: how do we measure groups, coordinating in
-            something that looks like the real world?
+            But nearly all of that work is in pairs. There are only a handful
+            of studies of groups, so how groups coordinate, in something that
+            looks like the real world, is still open.
         </p>
     {/snippet}
 </Slide>
 
-<Slide title="Why video games?" prompt="cat why-games.md" class="games">
+<Slide
+    title="Video games for studying social behaviour"
+    prompt="cat why-games.md"
+    class="games"
+>
     <div class="spectrum">
         <div class="pole">
             <img
@@ -253,24 +276,32 @@
     </p>
     {#snippet notes()}
         <p>
-            Video games are a natural paradigm for coordination and competition
-            between groups, and they can still be controlled.
+            Why video games? Lab tasks are controlled but artificial, and mostly
+            pairs; real life is natural, but hard to control or time-lock.
+            Video games sit in between.
         </p>
-        <p>
-            Players interact in real time with nothing scripted, like in the
-            real world. But every player sees the same screen, every input is
-            logged with its time, and we decide who is on which team, how
-            skilled the teams are, and what players know about each other.
-        </p>
-        <p>
-            Teams give cooperation within and competition between at the same
-            time, as in team sports. Multi-brain gaming has been done with
-            neurofeedback (Susnoschi Luca 2021).
-        </p>
+        <ul>
+            <li>
+                Players interact in real time with nothing scripted, like in the
+                real world.
+            </li>
+            <li>
+                Teams give cooperation within and competition between at the
+                same time, as in team sports.
+            </li>
+            <li>
+                Every player sees the same screen, and every input is logged
+                with its time.
+            </li>
+            <li>
+                We decide who is on which team, how skilled the teams are, and
+                what players know about each other.
+            </li>
+            <li>They're engaging, and need no training.</li>
+        </ul>
         <p>
             And because the game is just an app, the same paradigm can go out of
             the lab with portable EEG.
         </p>
-        <p>[TODO: a reference for games as a naturalistic paradigm?]</p>
     {/snippet}
 </Slide>

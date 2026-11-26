@@ -70,6 +70,81 @@
 </Slide>
 
 <Slide
+    title="[extra] Rated vs actual performance"
+    prompt="plot ratings --performance"
+    class="split result"
+>
+    <ul class="compact">
+        <li>
+            After each trial, before the result is shown, players rate how well
+            their own team and the other team did.
+        </li>
+        <li>
+            Both ratings track the distance each team actually reached (ρ = .60
+            own team, .53 other team).
+        </li>
+        <li>Players follow the other team's play, not only their own.</li>
+    </ul>
+    <figure class="plot">
+        <img
+            src={img("perf.png")}
+            alt="Rated team and opponent performance against actual distance, both increasing"
+        />
+        <figcaption>one dot per rating</figcaption>
+    </figure>
+</Slide>
+
+<Slide
+    title="[extra] What is the first ISC component?"
+    prompt="plot component-c1"
+    class="figure-wide"
+>
+    <figure class="plot">
+        <img
+            src={img("component.png")}
+            alt="Five panels: the C1 forward projection from joint play; the mean best-matching ICA component, nearly identical; each person's ICA components' correlation with the C1 map, with the best match a brain component for 43 of 45 people; C1 around saccade onsets in joint play, with a large negative deflection about 130 ms after; and horizontal EOG ISC, own team above other team"
+        />
+        <figcaption>
+            joint-play C1 · best-matching per-person ICA component (motor
+            baseline) · ICLabel class of each component · C1 around saccades ·
+            horizontal EOG ISC
+        </figcaption>
+    </figure>
+    <ul class="compact">
+        <li>
+            For 43 of 45 people, the ICA component that best matches C1 (|r|
+            ≈ 0.75–0.97) is labelled <strong>brain</strong>, not eye or muscle.
+        </li>
+        <li>
+            But C1 responds strongly to saccades during play, and teammates'
+            eye movements are themselves more correlated than opponents' (EOG
+            ISC, own &gt; other team).
+        </li>
+    </ul>
+    {#snippet notes()}
+        <p>
+            Left to right: the forward projection of C1 from joint play; the
+            mean of each person's best-matching ICA component from the motor
+            baseline (fitted separately, so an independent check); the ICLabel
+            class of every component, with the best match outlined; C1
+            time-locked to saccade onsets in joint play; and ISC of the
+            horizontal EOG itself.
+        </p>
+        <p>
+            So C1 looks like brain activity rather than an ocular artefact, but
+            it is visually driven, and where people look is shared more within
+            a team. Shared gaze is one of the things the comparison levels do
+            not yet separate from team membership.
+        </p>
+        <p>
+            [Preprocessing: see the bubble-locked EEG slide notes; 1–40 Hz, bad
+            channels interpolated, average reference, EOG regression, ICA with
+            ICLabel + saccade/fixation variance ratio.]
+        </p>
+    {/snippet}
+</Slide>
+
+<Slide
     title="[extra] ISC with shared stimuli"
     prompt="plot motor-baseline-isc"
     class="split result"

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { references, showCitation, sortKey } from '../lib/references.svelte';
+	import Links from '../components/Links.svelte';
 
 	// alphabetical, as an author–year bibliography is; each keeps its index for the way back
 	let sorted = $derived(
@@ -26,4 +27,5 @@
 			</li>
 		{/each}
 	</ol>
+	<Links />
 </section>

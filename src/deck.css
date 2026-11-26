@@ -224,6 +224,10 @@ body {
 .reveal .game ul.lead li {
 	margin-bottom: 1em;
 }
+.reveal .game ul.lead li.built {
+	font-size: 0.7em;
+	color: var(--color-fg-muted);
+}
 .reveal .split.game figcaption {
 	text-align: center;
 }
@@ -318,6 +322,66 @@ body {
 }
 .reveal .split.result.neural .body {
 	grid-template-columns: 0.55fr 1.45fr;
+}
+/* behaviour: the press signals take the slide first, then make room for the plot */
+.reveal .split.result.beh .body {
+	grid-template-columns: 0.7fr 1.3fr;
+	transition:
+		grid-template-columns 0.6s ease,
+		gap 0.6s ease;
+}
+.reveal .split.result.beh .plot {
+	min-width: 0;
+}
+html:not(.reveal-print) .reveal .split.result.beh .body:has(> .plot.fragment:not(.visible)) {
+	grid-template-columns: 1fr 0fr;
+	gap: 0;
+}
+html:not(.reveal-print) .reveal .split.result.beh .body:has(> .plot.fragment:not(.visible)) .explain {
+	width: 62%;
+	margin-inline: auto;
+}
+
+/* a plot with a smaller plot called out over it (components/InsetPlot.svelte) */
+.reveal .inset-plot {
+	position: relative;
+	padding: 8px 12px;
+	border: 2px solid var(--color-accent-soft);
+	border-radius: 0.5rem;
+	background-color: #fff;
+}
+.reveal .plot .inset-plot img,
+.reveal .split .plot .inset-plot img {
+	display: block;
+	width: 100%;
+	padding: 0;
+	border: 0;
+	border-radius: 0;
+}
+.reveal .inset-plot > svg {
+	position: absolute;
+	top: 8px;
+	left: 12px;
+	width: calc(100% - 24px);
+	height: calc(100% - 16px);
+	overflow: visible;
+}
+.reveal .inset-plot .from {
+	fill: none;
+	stroke: var(--color-accent);
+	stroke-width: 5;
+	stroke-dasharray: 14 10;
+}
+.reveal .inset-plot .link {
+	stroke: var(--color-accent);
+	stroke-width: 5;
+	stroke-dasharray: 14 10;
+}
+.reveal .inset-plot .frame {
+	fill: #fff;
+	stroke: var(--color-accent);
+	stroke-width: 6;
+	filter: drop-shadow(0 6px 14px rgb(0 0 0 / 0.25));
 }
 .reveal .footnote {
 	margin: 0;
@@ -753,6 +817,34 @@ body {
 	--bar: linear-gradient(to right, var(--c-mismatched) 50%, var(--c-mismatched-low) 50%);
 	grid-column: 4;
 }
+.reveal .cond-card.main {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	border: 2px solid var(--color-accent);
+	box-shadow: 0 0 28px -10px var(--color-glow);
+}
+.reveal .cond-card.main > b {
+	font-size: 1.45em;
+	color: var(--color-accent-strong);
+}
+.reveal .cond-card .role {
+	display: block;
+	margin-bottom: 0.2em;
+	font-family: var(--font-mono);
+	font-size: 0.6em;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--color-fg-subtle);
+}
+.reveal .cond-card:not(.main) {
+	border-style: dashed;
+}
+.reveal .cond-card small.tests {
+	margin-top: 0.5em;
+	font-style: italic;
+	color: var(--color-fg-subtle);
+}
 .reveal .design-tree .skill-match {
 	grid-column: 2 / 4;
 	grid-row: 4;
@@ -891,25 +983,25 @@ body {
 	margin: 0;
 }
 /* links: the game, the paper and these slides, each QR code with its link to the right, evenly spaced */
-.reveal .summary .play {
+.reveal .play {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	gap: 28px;
 	margin-top: 1em;
 }
-.reveal .summary .link-block {
+.reveal .play .link-block {
 	display: flex;
 	align-items: center;
 	gap: 20px;
 }
-.reveal .summary .try a {
+.reveal .play .try a {
 	white-space: nowrap;
 }
-.reveal .summary .qr {
+.reveal .play .qr {
 	position: static;
 }
-.reveal .summary .qr svg {
+.reveal .play .qr svg {
 	width: 124px;
 	height: 124px;
 	margin: 0;
@@ -920,7 +1012,7 @@ body {
     justify-content: space-between;
     gap: 0.6em;
 }
-.reveal .summary .try {
+.reveal .play .try {
 	margin: 0;
 	font-family: var(--font-mono);
 	font-size: 0.6em;
@@ -1135,6 +1227,43 @@ body {
 }
 .reveal .references a {
 	overflow-wrap: anywhere;
+}
+/* the links stay up under the references while questions are asked: three narrower columns to
+   make room */
+.reveal .references ol {
+	columns: 3;
+	column-gap: 1.8em;
+	font-size: 0.42em;
+}
+.reveal .references .play {
+	flex: none;
+	margin-top: 0.6em;
+	padding-top: 0.8em;
+	border-top: 1px solid var(--color-line);
+}
+.reveal .references .play .qr svg {
+	width: 104px;
+	height: 104px;
+}
+
+/* thank you */
+.reveal .thanks .body {
+	align-items: flex-start;
+}
+.reveal .thanks dl {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	gap: 0.9em 1.4em;
+	align-items: baseline;
+	margin: 0;
+	font-size: 1.05em;
+}
+.reveal .thanks dt {
+	font-size: 1.1em;
+	color: var(--color-accent-strong);
+}
+.reveal .thanks dd {
+	margin: 0;
 }
 
 /*
@@ -1680,4 +1809,76 @@ html.reveal-print .reveal .timing-fig .playback {
 }
 .reveal .references li.flash {
 	background-color: var(--color-accent-faint);
+}
+
+/* coordination gives rise to synchrony: two definitions, each with a small picture */
+.reveal .defs .def-cards {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 40px;
+}
+.reveal .defs .def-card {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5em;
+	padding: 1em 1.2em;
+	border: 1px solid var(--color-line);
+	border-top: 3px solid var(--color-accent);
+	border-radius: 0.4rem;
+	background-color: var(--color-surface-2);
+}
+.reveal .defs .def-card p {
+	margin: 0;
+}
+.reveal .defs .def-card .term strong {
+	font-size: 1.25em;
+	color: var(--color-accent-strong);
+}
+.reveal .defs .def-card svg {
+	width: 100%;
+	margin-top: auto;
+	padding-top: 0.6em;
+}
+.reveal .defs svg .who {
+	font-family: var(--font-mono);
+	font-size: 16px;
+	fill: var(--color-fg-strong);
+}
+.reveal .defs svg .track {
+	stroke: var(--color-line);
+	stroke-width: 1.5;
+}
+.reveal .defs svg .beat {
+	fill: var(--color-accent);
+	opacity: 0.85;
+}
+.reveal .defs svg .align {
+	stroke: var(--color-fg-subtle);
+	stroke-width: 1.2;
+	stroke-dasharray: 3 4;
+}
+.reveal .defs svg .head {
+	fill: var(--color-surface);
+	stroke: var(--color-fg-muted);
+	stroke-width: 2;
+}
+.reveal .defs svg .wave {
+	fill: none;
+	stroke: var(--color-accent);
+	stroke-width: 2;
+}
+.reveal .defs svg .now {
+	stroke: var(--color-fg-subtle);
+	stroke-width: 1.5;
+	stroke-dasharray: 3 4;
+}
+.reveal .defs .defs-foot {
+	margin: 1.2em 0 0;
+	text-align: center;
+	color: var(--color-fg-muted);
+}
+
+/* one wide figure across the slide, a few lines under it */
+.reveal .figure-wide .body {
+	gap: 28px;
 }
